@@ -7,6 +7,11 @@ authors:
     given-names: Diego
     email: diegoaquinde@gmail.com
 year: 2026
+doi: 10.5281/zenodo.21223038
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21223038
+    description: "Working paper v0.1 (design & preregistered protocol), Zenodo"
 repository-code: "https://github.com/diegoqprobst/pragma-bench"
 license: MIT
 keywords:

@@ -3,6 +3,7 @@
 > **Documento listo para subir a OSF** (plantilla OSF Preregistration). Congela hipótesis, diseño, métricas y plan de análisis ANTES de ejecutar cualquier modelo evaluado. Una vez registrado (fecha + DOI), no se modifica; cualquier desviación se reporta como tal en el preprint.
 >
 > Estado: **borrador final — pendiente de registro en OSF**. Al registrar: anotar aquí fecha, URL y hash del commit del repo.
+> Working paper v0.1 (diseño + protocolo) depositado en Zenodo: **doi.org/10.5281/zenodo.21223038** (2026-07-06).
 
 ## 1. Título
 

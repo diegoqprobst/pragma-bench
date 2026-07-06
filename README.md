@@ -50,4 +50,4 @@ Código **MIT**; datos del benchmark (`items/`) **CC BY 4.0**. Ver [LICENSE](LIC
 
 ## Cómo citar
 
-Quinde, D. (2026). *Palo Alto Bench: Detecting Symmetrical Escalation and Double Binds, and Producing Valid Reframes, in Frontier LLMs (ES/EN)*. Preprint.
+Quinde Probst, D. A. (2026). *Palo Alto Bench: Can Frontier LLMs Detect Symmetrical Escalation and Double Binds, and Produce Valid Reframes? A Bilingual (Spanish/English) Benchmark* — Working Paper v0.1 (Design & Preregistered Protocol). Zenodo. https://doi.org/10.5281/zenodo.21223038
