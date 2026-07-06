@@ -31,6 +31,8 @@ pragma-bench/
 ├── items/
 │   ├── schema.json        ← JSON Schema validable de un ítem
 │   └── seed.jsonl         ← set semilla congelado: 15 pares ES/EN (30 ítems)
+├── paper/
+│   └── paper.md           ← borrador del preprint (EN, arXiv cs.CL); [RESULTS] pendientes de la corrida
 └── runner/
     ├── prompts/v1.json    ← prompts CONGELADOS (referenciados por el preregistro)
     ├── run.py             ← ejecución multi-proveedor, reanudable, con manifiesto
