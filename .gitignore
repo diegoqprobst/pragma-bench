@@ -19,3 +19,6 @@ results/raw/
 
 # Config local del runner (los ids de modelo pinneados van al run-manifest)
 runner/config.json
+
+# Artefactos derivados para el deposito Zenodo (regenerables con git archive)
+paper/*.zip

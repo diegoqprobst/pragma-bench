@@ -16,10 +16,13 @@ Dos artefactos, dos destinos:
 
 ## Subir a Zenodo (acción de Diego)
 
-1. zenodo.org → New upload → arrastrar `palo-alto-bench-v0.1.pdf`.
-2. Los metadatos están preparados en [`../.zenodo.json`](../.zenodo.json) (título, ORCID, CC BY 4.0, keywords, versión 0.1) — copiar de ahí. Ese archivo también activa la integración automática GitHub→Zenodo si luego conectas el repo.
-3. Marcar "Reserve DOI" antes de publicar si quieres poner el DOI dentro del PDF (regenerar con el DOI y volver a subir).
-4. Al publicar: anotar el DOI en `docs/prereg-osf.md`, `CITATION.cff` y el README raíz.
+DOI reservado: **10.5281/zenodo.21223038** (ya estampado en el PDF y en los metadatos del repo).
+
+**Dos archivos al mismo depósito:**
+1. `palo-alto-bench-v0.1.pdf` — el working paper (archivo principal).
+2. `palo-alto-bench-v0.1-source.zip` — snapshot del repo en el commit del release: set semilla, prompts v1, prereg, runner, licencias. Con esto, el "congelado" que afirma el paper queda timestampeado bajo el mismo DOI. Regenerar si cambia el commit: `git archive --format=zip --prefix=palo-alto-bench-v0.1/ -o paper/palo-alto-bench-v0.1-source.zip HEAD`.
+
+Metadatos: copiar de [`../.zenodo.json`](../.zenodo.json) (título, ORCID, CC BY 4.0, keywords, v0.1). Publish → listo.
 
 ## Estado
 
