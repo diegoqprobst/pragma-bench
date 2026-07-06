@@ -1,0 +1,21 @@
+# Entornos / dependencias
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.env
+
+# Claves y secretos (NUNCA subir API keys)
+*.key
+secrets/
+.api_keys
+
+# Resultados crudos pesados (se publican aparte; mantener results/ versionado vacío con .gitkeep)
+results/raw/
+
+# Sistema
+.DS_Store
+
+# Config local del runner (los ids de modelo pinneados van al run-manifest)
+runner/config.json

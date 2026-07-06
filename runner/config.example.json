@@ -1,0 +1,11 @@
+{
+  "_comment": "Copia a config.json y ajusta. Los IDs de modelo se pinnean en la fecha de ejecución y quedan registrados en el run-manifest. El judge_model debe ser DISTINTO de todos los generadores (anti-autopreferencia).",
+  "temperature": 0.0,
+  "models": [
+    { "provider": "anthropic", "model": "claude-opus-4-8" },
+    { "provider": "anthropic", "model": "claude-sonnet-5" },
+    { "provider": "openai", "model": "<gpt-frontera-al-ejecutar>" },
+    { "provider": "google", "model": "<gemini-frontera-al-ejecutar>" }
+  ],
+  "judge_model": { "provider": "anthropic", "model": "<juez-fijo-distinto-de-generadores>" }
+}

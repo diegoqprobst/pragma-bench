@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Si usas este benchmark, cita este trabajo. / If you use this benchmark, please cite it."
+title: "Palo Alto Bench: Can Frontier LLMs Detect Symmetrical Escalation and Double Binds, and Produce Valid Reframes? A Bilingual (Spanish/English) Benchmark"
+type: dataset
+authors:
+  - family-names: Quinde
+    given-names: Diego
+    email: diegoaquinde@gmail.com
+year: 2026
+repository-code: "https://github.com/diegoqprobst/pragma-bench"
+license: MIT
+keywords:
+  - benchmark
+  - large language models
+  - pragmatics
+  - systemic therapy
+  - double bind
+  - symmetrical escalation
+  - reframing
+  - Palo Alto school
+  - Spanish
+notes: "Código MIT; datos (items/) CC BY 4.0. Preprint en preparación (arXiv cs.CL)."

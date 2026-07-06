@@ -1,0 +1,4 @@
+# Instala solo los SDKs de los proveedores que vayas a usar
+anthropic>=0.40
+openai>=1.50
+google-genai>=1.0

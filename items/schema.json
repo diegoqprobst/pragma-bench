@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/diegoqprobst/pragma-bench/items/schema.json",
+  "title": "Palo Alto Bench item",
+  "description": "Un estímulo del benchmark. Las viñetas NUNCA nombran el constructo. Ítems ES/EN comparten pair_id.",
+  "type": "object",
+  "required": ["id", "pair_id", "lang", "register", "dialogue", "task_a", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "description": "Identificador único, p. ej. se-001-es." },
+    "pair_id": { "type": "string", "description": "Liga las versiones ES y EN del mismo concepto de ítem." },
+    "lang": { "enum": ["es", "en"] },
+    "register": {
+      "enum": ["couple", "family", "workplace", "clinical", "friendship", "other"],
+      "description": "Contexto relacional de la viñeta."
+    },
+    "dialogue": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["speaker", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "speaker": { "type": "string" },
+          "text": { "type": "string" },
+          "nonverbal": { "type": "string", "description": "Acotación meta-comunicativa opcional (tono, gesto). Clave para el doble vínculo." }
+        }
+      }
+    },
+    "task_a": {
+      "type": "object",
+      "required": ["gold_labels"],
+      "additionalProperties": false,
+      "properties": {
+        "gold_labels": {
+          "type": "array",
+          "items": { "enum": ["symmetrical_escalation", "double_bind", "complementary_rigidity", "none"] },
+          "minItems": 1
+        },
+        "rationale": { "type": "string", "description": "Por qué esa etiqueta, en términos de los criterios de constructs.md." }
+      }
+    },
+    "task_b": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Anotación estructural. Solo los campos relevantes al constructo.",
+      "properties": {
+        "double_bind_components": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "primary_injunction": { "$ref": "#/$defs/turnRef" },
+            "secondary_injunction": { "$ref": "#/$defs/turnRef" },
+            "no_metacommunication": { "$ref": "#/$defs/turnRef" }
+          },
+          "description": "Los 3 componentes verbalmente localizables. La inescapabilidad del campo (inyunción terciaria de Bateson) va en el campo de ítem field_inescapability, por ser estructural y rara vez explícita."
+        },
+        "bind_subtype": {
+          "enum": ["logical_type", "pragmatic_paradox"],
+          "description": "Subtipo del doble vínculo: logical_type = paradoja de niveles lógicos (p. ej. 'sé espontáneo'); pragmatic_paradox = contradicción + no-salida + no-meta-comunicación sin cruce limpio de tipos lógicos."
+        },
+        "escalation_turns": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "description": "Índices (0-based) de los turnos de la curva ascendente."
+        },
+        "symmetric_position": { "type": "string", "description": "Rol/recurso simétrico en disputa." }
+      }
+    },
+    "task_c": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicable": { "type": "boolean" },
+        "presenting_problem": { "type": "string" },
+        "reference_reframes": {
+          "type": "array",
+          "description": "Ejemplares expertos NO exhaustivos, cada uno de una TÉCNICA distinta; orientan al juez, no son la única respuesta correcta ni un molde a igualar.",
+          "items": {
+            "type": "object",
+            "required": ["technique", "text"],
+            "additionalProperties": false,
+            "properties": {
+              "technique": { "type": "string", "description": "Técnica sistémica que ejemplifica, p. ej. connotación positiva, redefinición del problema, prescripción/paradoja, reubicación relacional/circular." },
+              "text": { "type": "string" }
+            }
+          }
+        },
+        "anti_examples": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "field_inescapability": {
+      "type": "string",
+      "description": "Doble vínculo: por qué la persona no puede escapar del campo (inyunción terciaria de Bateson). Precondición estructural del ítem, rara vez dicha en el diálogo."
+    },
+    "distractor_of": {
+      "type": ["string", "null"],
+      "description": "Constructo con el que se puede confundir (para ítems none/control)."
+    },
+    "source": { "type": "string", "description": "Procedencia, p. ej. 'synthetic-expert-authored'." },
+    "annotator": { "type": "string" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "turnRef": {
+      "type": "object",
+      "required": ["turn", "quote"],
+      "additionalProperties": false,
+      "properties": {
+        "turn": { "type": "integer", "minimum": 0 },
+        "quote": { "type": "string" }
+      }
+    }
+  }
+}
