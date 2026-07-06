@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Palo Alto Bench · quinde research preprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* quinde visual system (subset of styles/quinde.css) + preprint layout */
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap');
+
+  :root{
+    --q-ink:#2a4b66; --q-ink-soft:#3d617e; --q-mist:#ebeffe; --q-sky:#c1dceb;
+    --q-fog:#afbcc6; --q-paper:#ffffff; --q-paper-warm:#f7f8fa;
+    --q-rule:rgba(42,75,102,.18); --q-rule-soft:rgba(42,75,102,.10);
+    --q-sans:'Manrope', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    --teal:#0f6e56; --teal-wash:#eef5f1;
+    --sym:#d24f68; --rig:#3f63d4; --agc:#1f8f6a; --neu:#737d8c;
+    --doc-w:1000px; --col-w:720px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:var(--q-sans); font-weight:400; font-size:13.5px; line-height:1.6;
+        color:var(--q-ink); background:var(--q-paper); -webkit-font-smoothing:antialiased; }
+
+  .q-eyebrow{ font-size:10px; font-weight:500; letter-spacing:.28em; text-transform:uppercase; color:var(--q-ink); display:inline-block; }
+  .q-brand{ display:inline-flex; flex-direction:column; align-items:flex-start; color:var(--q-ink); line-height:1; }
+  .q-brand__name{ font-weight:200; letter-spacing:-.022em; font-size:22px; color:var(--q-ink); }
+  .q-brand__rule{ width:24px; height:1px; background:var(--q-ink); margin:6px 0; }
+  .q-brand__role{ font-weight:500; font-size:8px; letter-spacing:.3em; text-transform:uppercase; color:var(--q-ink-soft); white-space:nowrap; }
+  .q-brand--lg .q-brand__name{ font-size:30px; }
+  .q-brand--lg .q-brand__rule{ width:32px; margin:9px 0; background:var(--teal); }
+  .q-brand--lg .q-brand__role{ font-size:9px; letter-spacing:.3em; }
+  .q-brand--row{ flex-direction:row; align-items:center; gap:12px; }
+  .q-brand--row .q-brand__rule{ width:14px; margin:0; }
+  .q-brand--sm .q-brand__name{ font-size:15px; }
+  .q-brand--sm .q-brand__role{ font-size:7px; letter-spacing:.28em; }
+
+  body.q-screen{ background:#e9ecef; padding:40px 16px 96px; }
+  .doc{ width:100%; max-width:var(--doc-w); margin:0 auto; background:var(--q-paper);
+        box-shadow:0 1px 2px rgba(20,30,50,.04), 0 18px 50px rgba(20,30,50,.10);
+        padding:72px clamp(28px,6vw,84px) 80px; }
+  .col{ max-width:var(--col-w); margin-left:auto; margin-right:auto; }
+
+  .mast{ display:flex; justify-content:space-between; align-items:flex-start; gap:24px; }
+  .mast__meta{ text-align:right; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--q-fog); font-weight:500; line-height:1.9; }
+
+  .hero{ margin-top:52px; }
+  .hero .q-eyebrow{ color:var(--teal); }
+  .hero h1{ font-weight:300; font-size:clamp(28px,4.2vw,44px); line-height:1.1; letter-spacing:-.018em;
+            color:var(--q-ink); margin:18px 0 0; max-width:24ch; }
+  .hero h1 .lede{ color:var(--q-ink-soft); }
+  .byline{ margin-top:26px; display:flex; flex-wrap:wrap; gap:6px 26px; align-items:baseline; }
+  .byline .name{ font-size:14px; font-weight:600; color:var(--q-ink); }
+  .byline .role{ font-size:11px; color:var(--q-ink-soft); letter-spacing:.02em; }
+  .affil{ margin-top:9px; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 9px; font-size:11.5px; color:var(--q-ink-soft); }
+  .affil .sep{ color:var(--q-rule); }
+  .affil .fill{ color:var(--teal); font-weight:500; }
+  .tags{ margin-top:22px; display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{ font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+        color:var(--q-ink-soft); border:1px solid var(--q-rule); padding:6px 11px; }
+  .tag--teal{ color:var(--teal); border-color:rgba(15,110,86,.35); }
+
+  section{ margin-top:64px; }
+  .sec-no{ font-size:11px; font-weight:600; letter-spacing:.18em; color:var(--teal); display:block; break-after:avoid; }
+  h2.sec{ font-weight:300; font-size:26px; letter-spacing:-.01em; color:var(--q-ink); margin:8px 0 0; line-height:1.15; }
+  h3.sub{ font-size:14px; font-weight:600; color:var(--q-ink); margin:30px 0 0; }
+  p.body{ font-size:14.5px; line-height:1.72; color:var(--q-ink); margin:14px 0 0; text-wrap:pretty; }
+  p.body strong{ font-weight:600; }
+  .body--soft{ color:var(--q-ink-soft); }
+  code{ font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:.92em; color:var(--q-ink); background:var(--q-paper-warm); padding:1px 5px; }
+
+  .abstract{ background:var(--q-mist); padding:36px clamp(24px,4vw,48px); margin-top:40px; }
+  .abstract .lab{ font-size:9.5px; letter-spacing:.28em; text-transform:uppercase; font-weight:600; color:var(--teal); }
+  .abstract dl{ margin:18px 0 0; }
+  .abstract dt{ font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--q-ink); margin-top:18px; }
+  .abstract dt:first-child{ margin-top:0; }
+  .abstract dd{ margin:5px 0 0; font-size:13.5px; line-height:1.66; color:var(--q-ink); }
+
+  .clist{ margin:20px 0 0; padding:0; list-style:none; display:grid; gap:1px; background:var(--q-rule); border:1px solid var(--q-rule); }
+  .clist li{ background:var(--q-paper); padding:14px 18px; font-size:13.5px; line-height:1.55; display:flex; gap:14px; }
+  .clist .ck{ font-weight:700; color:var(--teal); flex:0 0 auto; font-size:12px; letter-spacing:.06em; padding-top:1px; }
+
+  figure{ margin:48px 0 0; }
+  .fig-wide{ width:100%; max-width:var(--col-w); margin-left:auto; margin-right:auto; }
+  .fig-card{ border:1px solid var(--q-rule); background:var(--q-paper); }
+  .fig-card__bar{ display:flex; justify-content:space-between; align-items:center; padding:13px 20px; border-bottom:1px solid var(--q-rule); }
+  .fig-card__bar .ttl{ font-size:10px; letter-spacing:.22em; text-transform:uppercase; font-weight:600; color:var(--q-ink); }
+  .fig-card__bar .n{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:var(--q-fog); }
+  .fig-card__body{ padding:26px 24px 22px; }
+  figcaption{ font-size:12px; line-height:1.6; color:var(--q-ink-soft); margin-top:14px; }
+  figcaption b{ color:var(--q-ink); font-weight:600; }
+
+  /* graphical abstract */
+  .ga{ border:1px solid var(--q-ink); background:var(--q-paper); }
+  .ga__top{ padding:28px 30px 22px; }
+  .ga__ey{ font-size:10px; letter-spacing:.26em; text-transform:uppercase; font-weight:600; color:var(--teal); }
+  .pipe{ margin-top:18px; display:flex; align-items:stretch; }
+  .pstep{ flex:1; display:flex; flex-direction:column; gap:7px; padding:2px 4px; }
+  .pstep .pk{ font-size:9px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--q-fog); }
+  .pstep .pt{ font-size:12.5px; line-height:1.3; font-weight:600; color:var(--q-ink); }
+  .pstep .pd{ font-size:10.5px; line-height:1.35; color:var(--q-ink-soft); }
+  .parrow{ flex:0 0 30px; display:flex; align-items:center; justify-content:center; color:var(--q-fog); }
+  .ga__split{ height:1px; background:var(--q-rule); }
+  .ga__bottom{ display:grid; grid-template-columns:1.45fr 1fr; }
+  .ga__constructs{ padding:22px 26px 20px; border-right:1px solid var(--q-rule); display:flex; flex-direction:column; gap:12px; }
+  .cbox{ border-left:2.5px solid var(--neu); padding:8px 0 8px 14px; }
+  .cbox .cn{ font-size:12px; font-weight:700; color:var(--q-ink); }
+  .cbox .cd{ font-size:11px; line-height:1.45; color:var(--q-ink-soft); margin-top:3px; }
+  .cbox--se{ border-color:var(--sym); }
+  .cbox--db{ border-color:var(--rig); }
+  .cbox--rf{ border-color:var(--agc); }
+  .ga__find{ padding:24px 28px; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+  .resbox{ border:1px solid var(--q-rule); padding:14px 16px; }
+  .resbox .rk{ font-size:9px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; margin-bottom:5px; color:var(--teal); }
+  .resbox .rv{ font-size:15px; font-weight:600; color:var(--q-ink); font-variant-numeric:tabular-nums; }
+  .resbox .rn{ font-size:10.5px; color:var(--q-ink-soft); margin-top:3px; }
+  .ga__foot{ padding:12px 30px; border-top:1px solid var(--q-ink); display:flex; justify-content:space-between; align-items:center; }
+  .ga__foot .disc{ font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--q-ink-soft); }
+  .ga__foot .mk{ font-size:13px; font-weight:300; letter-spacing:-.02em; color:var(--q-ink); }
+
+  /* annotated item (Fig 2) */
+  .item-dlg{ display:flex; flex-direction:column; gap:10px; }
+  .turn{ display:flex; gap:14px; align-items:flex-start; }
+  .turn .tn{ flex:0 0 22px; font-size:10px; font-weight:700; color:var(--q-fog); padding-top:4px; font-variant-numeric:tabular-nums; }
+  .turn .tb{ flex:1; border:1px solid var(--q-rule-soft); background:var(--q-paper-warm); padding:9px 13px; font-size:12.5px; line-height:1.5; }
+  .turn .tb .sp{ font-weight:700; }
+  .turn .tb .nv{ color:var(--q-ink-soft); font-style:italic; }
+  .turn .comp{ flex:0 0 168px; align-self:center; font-size:9px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:5px 9px; border:1px solid; text-align:center; }
+  .comp--p{ color:var(--rig); border-color:rgba(63,99,212,.4); }
+  .comp--s{ color:var(--sym); border-color:rgba(210,79,104,.4); }
+  .comp--nm{ color:var(--teal); border-color:rgba(15,110,86,.4); }
+  .item-meta{ margin-top:16px; padding-top:14px; border-top:1px solid var(--q-rule); font-size:11px; color:var(--q-ink-soft); line-height:1.6; }
+  .item-meta b{ color:var(--q-ink); }
+
+  /* tasks table */
+  .ttable{ width:100%; border-collapse:collapse; margin-top:20px; font-size:12.5px; }
+  .ttable th{ text-align:left; font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--q-ink); padding:10px 12px; border-bottom:1px solid var(--q-ink); }
+  .ttable td{ padding:11px 12px; border-bottom:1px solid var(--q-rule-soft); vertical-align:top; line-height:1.5; color:var(--q-ink); }
+  .ttable td:first-child{ font-weight:700; color:var(--teal); white-space:nowrap; }
+
+  .refs{ margin-top:18px; }
+  .refs p{ font-size:12px; line-height:1.5; color:var(--q-ink-soft); margin:0 0 9px; }
+  .refs p b{ color:var(--q-ink); font-weight:600; }
+
+  .endmark{ margin-top:64px; padding-top:24px; border-top:1px solid var(--q-rule); display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; }
+  .endmark .note{ font-size:11px; color:var(--q-ink-soft); max-width:48ch; line-height:1.55; }
+
+  @page{ size:A4; margin:16mm 15mm; }
+  @media print{
+    body.q-screen{ background:#fff; padding:0; }
+    .doc{ box-shadow:none; max-width:none; width:auto; padding:0; }
+    figure, .clist, .resbox, .cbox, .fig-card, .turn{ break-inside:avoid; }
+    .abstract dd, .abstract dt{ break-inside:avoid; }
+    .abstract dt{ break-after:avoid; }
+    section{ break-inside:auto; }
+    h2.sec, h3.sub{ break-after:avoid; }
+    .fig-wide{ width:100%; margin-left:0; }
+  }
+</style>
+</head>
+<body class="q-screen">
+
+<article class="doc">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="mast">
+    <div class="q-brand q-brand--lg">
+      <span class="q-brand__name">quinde<span style="color:var(--teal)">.</span></span>
+      <span class="q-brand__rule"></span>
+      <span class="q-brand__role">research preprint</span>
+    </div>
+    <div class="mast__meta">
+      Working paper · v0.1 · July 2026<br>
+      Design &amp; preregistered protocol · pre-results<br>
+      Zenodo → arXiv cs.CL
+    </div>
+  </header>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <div class="hero col">
+    <span class="q-eyebrow">Relational pragmatics · LLM evaluation</span>
+    <h1>Palo Alto Bench <span class="lede">— can frontier LLMs detect symmetrical escalation and double binds, and produce valid reframes? A bilingual (Spanish/English) benchmark</span></h1>
+    <div class="byline">
+      <span class="name">Diego Andrés Quinde Probst</span>
+      <span class="role">Author · clinical psychologist</span>
+    </div>
+    <div class="affil">
+      <span>Independent researcher · Santo Domingo, Ecuador</span>
+      <span class="sep">·</span>
+      <span class="fill">diegoaquinde@gmail.com</span>
+      <span class="sep">·</span>
+      <span>ORCID <span class="fill">0009-0005-7107-8897</span></span>
+    </div>
+    <div class="tags">
+      <span class="tag tag--teal">Preregistered</span>
+      <span class="tag tag--teal">Bilingual ES / EN</span>
+      <span class="tag">Open data &amp; code</span>
+      <span class="tag">100% synthetic vignettes</span>
+      <span class="tag">Not a medical device</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ ABSTRACT ═══════════ -->
+  <div class="abstract col">
+    <span class="lab">Abstract</span>
+    <dl>
+      <dt>Background</dt>
+      <dd>Large language models are increasingly present in emotionally loaded conversations — as companions, coaches, and informal counselors. These uses presuppose a capability that has never been directly measured: reading the <em>relational pragmatics</em> of an exchange — what an interaction is doing between two people — over and above the content of what either says. The Palo Alto school defined precisely such interaction-level pathologies and their treatment: symmetrical escalation, the double bind, and therapeutic reframing.</dd>
+      <dt>Objective</dt>
+      <dd>To introduce Palo Alto Bench, a bilingual (Spanish/English) benchmark that evaluates whether frontier LLMs can (1) <strong>detect</strong> symmetrical escalation and double binds in short dialogues, (2) <strong>localize</strong> their internal structure (primary injunction, contradictory secondary injunction, metacommunication block), and (3) <strong>produce valid reframes</strong>, scored against the five validity criteria of Watzlawick, Weakland and Fisch.</dd>
+      <dt>Design</dt>
+      <dd>Expert-authored dialogue vignettes that never name the constructs; culturally-native ES/EN parallel pairs isolating the cross-lingual gap; adversarial distractors (commentable contradictions, repaired conflicts, flexible complementarity) measuring over-detection; a neutral-vs-guided prompt manipulation quantifying prompt-induced pathologizing; and a generation task judged by a human expert and an LLM judge calibrated against them (weighted κ criterion, anti-self-preference constraint). Four directional hypotheses, all metrics, and a frozen reframe-validity threshold are preregistered before any evaluated model is run.</dd>
+      <dt>Status of this version</dt>
+      <dd>v0.1 is a <strong>pre-results working paper</strong>: it fixes the benchmark design, the frozen seed set (15 pairs, 30 stimuli), the frozen prompts, and the preregistered analysis plan, and makes them citable. Results of the confirmatory run against frontier models will appear in the next version of this record; dataset, prompts, code, raw outputs and judge scores are released openly.</dd>
+    </dl>
+  </div>
+
+  <!-- ═══════════ 1. INTRODUCTION ═══════════ -->
+  <section class="col">
+    <span class="sec-no">01</span>
+    <h2 class="sec">Introduction</h2>
+    <p class="body">A person tells a chatbot: <em>"My mother asks me to hug her, then stiffens and says a real hug should come on its own — and when I point this out, she says a good son doesn't argue."</em> Whether the model recognizes what is happening here — not sadness, not conflict, but a specific interactional trap with a specific structure — determines whether its response helps, soothes generically, or reinforces the trap.</p>
+    <p class="body">Existing evaluations of LLMs in psychologically sensitive settings measure symptom classification, risk detection, empathy, or counseling-style quality. All treat the <em>individual</em> as the unit of analysis and the <em>content</em> of utterances as the signal. A founding insight of the systemic tradition is that much psychological suffering lives not in individuals but in <strong>interaction patterns</strong>: self-reinforcing loops whose structure is invisible at the level of any single message (Watzlawick, Beavin &amp; Jackson, 1967). A model that reads content but not pattern will misread precisely the conversations where stakes are highest.</p>
+    <p class="body">We therefore ask directly: <strong>can frontier LLMs see interaction patterns?</strong> We operationalize the question through three constructs chosen because they are precisely defined in the source literature, structurally diagnosable from short excerpts, and consequential — each has a known clinical response whose misapplication causes harm. Two further design commitments target the failure modes that matter in deployment: <em>over-detection</em> (finding pathology wherever one looks, measured with adversarial <code>none</code> items and a neutral-vs-guided prompt contrast) and <em>invalid reframes</em> (responses that sound therapeutic while being positivity, advice, or minimization — each a disqualification flag in our rubric). And because the deployment reality of emotional LLM use is massively multilingual while clinical NLP evaluation is overwhelmingly English, every item is authored as a culturally-native Spanish/English parallel pair.</p>
+  <!-- ═══════════ FIGURE 1 · GRAPHICAL ABSTRACT ═══════════ -->
+  <figure class="fig-wide">
+    <div class="ga">
+      <div class="ga__top">
+        <span class="ga__ey">Figura 1 · Resumen gráfico</span>
+        <div class="pipe">
+          <div class="pstep">
+            <span class="pk">01 · Ítems</span>
+            <span class="pt">Viñetas-diálogo</span>
+            <span class="pd">pares paralelos ES/EN · nunca nombran el constructo</span>
+          </div>
+          <div class="parrow">→</div>
+          <div class="pstep">
+            <span class="pk">02 · Tarea A</span>
+            <span class="pt">Detección</span>
+            <span class="pd">neutra vs. guiada · distractores adversariales</span>
+          </div>
+          <div class="parrow">→</div>
+          <div class="pstep">
+            <span class="pk">03 · Tarea B</span>
+            <span class="pt">Localización</span>
+            <span class="pd">componentes por turno · citas exactas</span>
+          </div>
+          <div class="parrow">→</div>
+          <div class="pstep">
+            <span class="pk">04 · Tarea C</span>
+            <span class="pt">Reencuadre</span>
+            <span class="pd">generación sin etiqueta</span>
+          </div>
+          <div class="parrow">→</div>
+          <div class="pstep">
+            <span class="pk">05 · Jueces</span>
+            <span class="pt">Rúbrica 5 ejes</span>
+            <span class="pd">experto humano + juez-LLM calibrado (κ ponderado)</span>
+          </div>
+        </div>
+      </div>
+      <div class="ga__split"></div>
+      <div class="ga__bottom">
+        <div class="ga__constructs">
+          <div class="cbox cbox--se">
+            <div class="cn">Symmetrical escalation</div>
+            <div class="cd">each turn matches and outbids the other — a runaway positive feedback loop (Watzlawick et al., 1967)</div>
+          </div>
+          <div class="cbox cbox--db">
+            <div class="cn">Double bind</div>
+            <div class="cd">contradictory injunctions across levels + a block on commenting (Bateson et al., 1956) — two subtypes annotated</div>
+          </div>
+          <div class="cbox cbox--rf">
+            <div class="cn">Valid reframe</div>
+            <div class="cd">same facts, new workable meaning — five validity criteria (Watzlawick, Weakland &amp; Fisch, 1974)</div>
+          </div>
+        </div>
+        <div class="ga__find">
+          <div class="resbox">
+            <div class="rk">Preregistered</div>
+            <div class="rv">4 directional hypotheses</div>
+            <div class="rn">difficulty hierarchy · ES−EN gap · over-detection · production &lt; recognition</div>
+          </div>
+          <div class="resbox">
+            <div class="rk">Frozen before any model runs</div>
+            <div class="rv">15 seed pairs · prompts v1 · validity threshold</div>
+            <div class="rn">evaluation set ≥120 concepts authored post-registration</div>
+          </div>
+        </div>
+      </div>
+      <div class="ga__foot">
+        <span class="disc">100% synthetic · not a medical device</span>
+        <span class="mk">quinde<span style="color:var(--teal)">.</span></span>
+      </div>
+    </div>
+    <figcaption><b>Figure 1.</b> Graphical abstract. Expert-authored bilingual vignettes probe three capabilities at increasing depth — label, structure, intervention — with over-detection measured on adversarial <em>none</em> items and generation scored by a human-calibrated judge.</figcaption>
+  </figure>
+
+    <h3 class="sub">Contributions</h3>
+    <ul class="clist">
+      <li><span class="ck">C1</span><span>The first benchmark (to our knowledge) operationalizing systemic-interactional constructs — symmetrical escalation, double bind with its component structure, complementary rigidity, and valid reframing — for LLM evaluation.</span></li>
+      <li><span class="ck">C2</span><span>A bilingual parallel-pair design with expert-authored items that never name their constructs, plus adversarial distractors calibrated to each construct's nearest confusable neighbor.</span></li>
+      <li><span class="ck">C3</span><span>A preregistered protocol — four directional hypotheses, frozen prompts, frozen validity threshold, human-calibrated LLM judging — registered before any evaluated model is run.</span></li>
+      <li><span class="ck">C4</span><span>Full open release: items, gold annotations, frozen prompts, runner and scoring code; raw outputs and judge scores upon the confirmatory run.</span></li>
+    </ul>
+  </section>
+
+  <!-- ═══════════ 2. BACKGROUND ═══════════ -->
+  <section class="col">
+    <span class="sec-no">02</span>
+    <h2 class="sec">Theoretical background</h2>
+    <h3 class="sub">Interaction, not individuals</h3>
+    <p class="body">The Palo Alto school reframed psychopathology as communication: the unit of analysis is the ongoing exchange, whose regularities persist independently of the participants' intentions. Two properties drive our constructs: every message carries <em>content</em> and a <em>relationship claim</em>, and relations are <em>symmetrical</em> (equality — partners mirror) or <em>complementary</em> (difference — one-up/one-down), both healthy when flexible and pathological when rigid or runaway (Watzlawick et al., 1967).</p>
+    <h3 class="sub">Symmetrical escalation</h3>
+    <p class="body">When both parties claim the same relational position, each assertion invites a matching-and-exceeding counter: a positive feedback loop with no internal brake. Operationally: (i) same claimed position, (ii) mirror-and-outbid turn structure, (iii) monotone intensification without repair. Its nearest confusables — which our distractors instantiate — are complementary rigidity, simple disagreement, and repaired conflict.</p>
+    <h3 class="sub">Double bind</h3>
+    <p class="body">Bateson, Jackson, Haley and Weakland (1956) specify: an intense relationship; a primary negative injunction; a secondary injunction contradicting it <em>at a more abstract logical level</em>; a tertiary injunction prohibiting escape from the field; and a block on commenting on the contradiction. The victim cannot win, cannot not respond, and cannot say so. We annotate three <strong>textually localizable components</strong> (<code>primary_injunction</code>, <code>secondary_injunction</code>, <code>no_metacommunication</code>) and document field inescapability — structural, rarely verbalized — as an item-level precondition rather than a turn to localize. Two subtypes are annotated and reported separately: <strong>logical-type</strong> binds (the canonical "be spontaneous" paradox, where the secondary injunction targets the motivation of the demanded act itself) and <strong>pragmatic-paradox</strong> binds (contradiction + inescapability + comment-block without a clean Russellian level-crossing). The contrast turns a definitional dispute into an empirical result.</p>
+    <h3 class="sub">Valid reframing</h3>
+    <p class="body">Reframing changes "the conceptual and/or emotional setting or viewpoint in relation to which a situation is experienced," placing it in a frame that "fits the facts of the same concrete situation equally well or even better, thereby changing its entire meaning" (Watzlawick, Weakland &amp; Fisch, 1974). Five scoring axes follow: <strong>fit to the facts</strong>, <strong>frame change</strong>, <strong>irreversibility</strong>, <strong>assimilability</strong>, <strong>behavioral opening</strong>. The tradition is equally explicit about what reframing is <em>not</em> — positive thinking, denial, direct advice, causal-historical interpretation — and these become disqualification flags.</p>
+  </section>
+
+  <!-- ═══════════ FIGURE 2 · ANNOTATED ITEM ═══════════ -->
+  <figure class="fig-wide">
+    <div class="fig-card">
+      <div class="fig-card__bar"><span class="ttl">Ítem anotado · doble vínculo (subtipo logical_type)</span><span class="n">Figura 2</span></div>
+      <div class="fig-card__body">
+        <div class="item-dlg">
+          <div class="turn">
+            <span class="tn">0</span>
+            <div class="tb"><span class="sp">Mom:</span> "Come here and give me a hug — you're like ice with me."</div>
+            <span class="comp comp--p">primary injunction</span>
+          </div>
+          <div class="turn">
+            <span class="tn">1</span>
+            <div class="tb"><span class="sp">Son:</span> "Sure, Mom." <span class="nv">(steps in and puts his arms around her)</span></div>
+            <span class="comp" style="visibility:hidden"></span>
+          </div>
+          <div class="turn">
+            <span class="tn">2</span>
+            <div class="tb"><span class="sp">Mom:</span> <span class="nv">(stiffens and pulls back a little)</span> "Not like that. Don't do it out of duty — a real hug has to come on its own."</div>
+            <span class="comp comp--s">secondary injunction</span>
+          </div>
+          <div class="turn">
+            <span class="tn">3</span>
+            <div class="tb"><span class="sp">Son:</span> "But you just asked me to—"</div>
+            <span class="comp" style="visibility:hidden"></span>
+          </div>
+          <div class="turn">
+            <span class="tn">4</span>
+            <div class="tb"><span class="sp">Mom:</span> "Don't talk back. A good son doesn't argue about these things with his mother."</div>
+            <span class="comp comp--nm">no metacommunication</span>
+          </div>
+        </div>
+        <div class="item-meta">
+          <b>field_inescapability</b> (item-level precondition): the son cannot leave the filial relationship or stop responding to his mother. ·
+          <b>Task A</b> gold: <code>double_bind</code> · <b>Task C</b> presenting problem: he cannot respond in any way that satisfies her, and cannot point this out either.
+        </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 2.</b> Seed item <code>db-001-en</code> (ES twin <code>db-001-es</code> shares <code>pair_id</code> and turn structure). The metacommunicative channel travels in nonverbal stage directions; the dialogue never names the construct. In Task B the model must return each component with its turn index and quote.</figcaption>
+  </figure>
+
+  <!-- ═══════════ 3. THE BENCHMARK ═══════════ -->
+  <section class="col">
+    <span class="sec-no">03</span>
+    <h2 class="sec">The benchmark</h2>
+    <h3 class="sub">Items and design rules</h3>
+    <p class="body">Each item is a short dialogue (2–6 turns, with optional nonverbal stage directions carrying the metacommunicative channel), a relational register (couple, family, workplace, clinical, friendship), gold labels, structural annotation, and — where applicable — reframing materials: presenting problem, reference reframes each tagged with a distinct systemic technique, and anti-examples. Three rules are machine-enforced: <strong>(1) no construct leakage</strong> — dialogues never contain theory terms in either language, so memorized vocabulary earns nothing; <strong>(2) parallel pairs</strong> — every concept exists natively in both languages, sharing <code>pair_id</code> and turn structure, never translated literally; <strong>(3) distractors that bite</strong> — every <code>none</code> item is a near-miss of a specific construct, failing exactly one criterion: a double demand that is <em>commentable and adjusted when named</em>; a reproach met with <em>immediate repair</em>; a <em>one-off, role-flexible</em> helping exchange.</p>
+    <h3 class="sub">Seed and evaluation sets</h3>
+    <p class="body">A frozen seed set of 15 pairs (30 stimuli; 5 escalation / 4 double bind balanced across subtypes / 3 complementary rigidity / 3 none) anchors the annotation guide and calibrates the judge; it is excluded from confirmatory analysis. The evaluation set (≥120 concepts, ≥240 stimuli; composition preregistered, including ≥15% clinical register and ~25% <code>none</code>) is authored after registration and before any evaluated model runs.</p>
+    <h3 class="sub">Tasks</h3>
+    <table class="ttable">
+      <tr><th>Task</th><th>The model receives</th><th>It must produce</th><th>Scored by</th></tr>
+      <tr><td>A · Detect</td><td>dialogue only — <em>neutral</em> ("any problematic pattern? yes/no") vs. <em>guided</em> (four labels with one-line operational glosses, order randomized per item)</td><td>yes/no + rationale; multi-label choice</td><td>macro-F1, per-class F1, confusion structure, FP-rate on <code>none</code></td></tr>
+      <tr><td>B · Localize</td><td>dialogue + operational description of the pattern present (never the theory name)</td><td>components with turn indices and quotes (JSON)</td><td>exact turn = 2 · adjacent = 1 · absent/hallucinated = 0; turn-set Jaccard for escalation</td></tr>
+      <tr><td>C · Reframe</td><td>dialogue only — asked for "a different way of understanding the situation that fits the facts, changes its meaning, and opens ways out — without advice or minimizing"; the term <em>reframe</em> never appears</td><td>2–4 sentences addressed to the people</td><td>five-axis rubric (1–4), human expert + calibrated LLM judge; frozen validity threshold</td></tr>
+    </table>
+    <h3 class="sub">Calibrated judging</h3>
+    <p class="body">The human expert (clinical training in systemic therapy; blind to model identity, randomized order) scores all seed-set generations; a fixed LLM judge — never the generator under evaluation — scores the same set with the identical rubric prompt, reference reframes framed explicitly as <em>non-exhaustive examples of distinct techniques, not templates to match</em>. The judge scales to the full set only if quadratic-weighted κ ≥ 0.60 on ≥ 4 of 5 axes (one prompt iteration permitted); otherwise the human scores everything. A reframe is <strong>valid</strong> iff axes 1, 2, 5 ≥ 3 and axes 3, 4 ≥ 2 — threshold frozen 2026-06-30, preregistered.</p>
+  </section>
+
+  <!-- ═══════════ 4. PROTOCOL ═══════════ -->
+  <section class="col">
+    <span class="sec-no">04</span>
+    <h2 class="sec">Preregistered protocol</h2>
+    <p class="body"><strong>Models and inference.</strong> Frontier models pinned by exact version at run time (manifest published); temperature 0 or provider minimum; n = 3 repetitions for Tasks A/B (majority vote; ties count as errors), single generation for Task C. Prompts are frozen (<code>runner/prompts/v1.json</code>); every raw output records the SHA-256 of its exact prompt. <strong>Failure handling:</strong> refusals count as incorrect and are reported separately; malformed JSON gets one format-reminder retry; API errors retry ×3 then exclude with report.</p>
+    <p class="body"><strong>Statistics.</strong> 95% CIs via nonparametric bootstrap (B = 10,000) resampling by <code>pair_id</code>; exact McNemar on ES/EN paired accuracy and on guided-vs-neutral false positives; Wilcoxon signed-rank on item-level rubric means; Holm correction across models within each hypothesis.</p>
+    <h3 class="sub">Hypotheses</h3>
+    <ul class="clist">
+      <li><span class="ck">H1</span><span><strong>Difficulty hierarchy.</strong> Double-bind detection F1 &lt; symmetrical-escalation F1: multilevel (content-vs-metacommunication) reasoning is harder than curve-shape recognition.</span></li>
+      <li><span class="ck">H2</span><span><strong>Cross-lingual gap.</strong> Spanish performance &lt; English on at least one task, within parallel pairs.</span></li>
+      <li><span class="ck">H3</span><span><strong>Over-detection.</strong> False-positive rate on <code>none</code> items &gt; 0 under guided prompting, and higher guided than neutral — clinical sycophancy quantified.</span></li>
+      <li><span class="ck">H4</span><span><strong>Production lags recognition.</strong> Valid-reframe rate &lt; detection rate on the same items.</span></li>
+    </ul>
+    <p class="body body--soft">Exploratory: logical-type vs. pragmatic-paradox gap; component hallucination in Task B; register effects; escalation↔rigidity confusion structure. Full operationalization in the OSF registration accompanying this record.</p>
+  </section>
+
+  <!-- ═══════════ 5. WHAT THIS VERSION IS ═══════════ -->
+  <section class="col">
+    <span class="sec-no">05</span>
+    <h2 class="sec">What this version is — and is not</h2>
+    <p class="body">This working paper makes the benchmark's design citable and timestamped <em>before</em> results exist: constructs and annotation guide, frozen seed set, frozen prompts, frozen validity threshold, and the preregistered analysis plan. The confirmatory run — evaluation set, frontier-model results across the four hypotheses, judge-calibration outcomes — will appear in the next version of this record and in the accompanying arXiv preprint, together with a fully cited treatment of related work in mental-health NLP, pragmatics evaluation, sycophancy, and LLM-as-judge methodology.</p>
+    <p class="body">Palo Alto Bench measures pattern recognition and single-shot intervention quality over synthetic vignettes. It does not measure therapeutic outcome, multi-session skill, or deployment safety; a high score licenses none of those claims. The constructs carry historical caveats — the double-bind theory of schizophrenia is not an etiological claim we endorse; we use the communication-structural definitions, which stand independently.</p>
+  </section>
+
+  <!-- ═══════════ 6. LIMITATIONS ═══════════ -->
+  <section class="col">
+    <span class="sec-no">06</span>
+    <h2 class="sec">Limitations</h2>
+    <p class="body">(i) Synthetic expert-authored items: strong confound control, reduced ecological realism; a subsample inspired by anonymized real transcripts is future work. (ii) <strong>Single expert annotator</strong> (the author) for gold labels and human judging: no inter-annotator κ is reportable; the annotation guide is public precisely so the labels can be replicated, and a second clinical annotator is the highest-value extension. (iii) LLM-judge bias: mitigated by human calibration, anti-self-preference and anti-template instructions, not eliminated. (iv) Results, when reported, will be version-pinned snapshots.</p>
+  </section>
+
+  <!-- ═══════════ 7. ETHICS ═══════════ -->
+  <section class="col">
+    <span class="sec-no">07</span>
+    <h2 class="sec">Ethics statement</h2>
+    <p class="body">This is an evaluation instrument, not a clinical tool; nothing here validates LLMs as therapists — if anything, the benchmark exists to give precise content to claims of <em>incapacity</em>. Vignettes are fictional; no patient data is used. Model-generated reframes will be published with model attribution so failure modes are inspectable. Dual-use note: double-bind structure has been public in the clinical literature for seventy years; the benchmark adds detection capability, not technique.</p>
+  </section>
+
+  <!-- ═══════════ 8. AVAILABILITY ═══════════ -->
+  <section class="col">
+    <span class="sec-no">08</span>
+    <h2 class="sec">Data and code availability</h2>
+    <p class="body">Items, gold annotations, frozen prompts, runner and scoring code, and the preregistration text are available at <span style="color:var(--teal);font-weight:500">github.com/diegoqprobst/pragma-bench</span> (code MIT, data CC BY 4.0). Raw model outputs and judge scores will be added with the confirmatory run. The DOI of this record is assigned on deposit (Zenodo) and versions with each release.</p>
+  </section>
+
+  <!-- ═══════════ REFERENCES ═══════════ -->
+  <section class="col">
+    <span class="sec-no">09</span>
+    <h2 class="sec">References</h2>
+    <div class="refs">
+      <p>Bateson, G., Jackson, D. D., Haley, J. &amp; Weakland, J. (1956). Toward a theory of schizophrenia. <b>Behavioral Science,</b> 1(4), 251–264.</p>
+      <p>Watzlawick, P., Beavin, J. H. &amp; Jackson, D. D. (1967). <b>Pragmatics of Human Communication: A Study of Interactional Patterns, Pathologies, and Paradoxes.</b> W. W. Norton.</p>
+      <p>Watzlawick, P., Weakland, J. H. &amp; Fisch, R. (1974). <b>Change: Principles of Problem Formation and Problem Resolution.</b> W. W. Norton.</p>
+      <p style="color:var(--q-fog)">The arXiv version will add the fully verified related-work bibliography (mental-health NLP, pragmatics evaluation, sycophancy, LLM-as-judge).</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ END MARK ═══════════ -->
+  <div class="endmark col">
+    <div class="q-brand q-brand--row q-brand--sm">
+      <span class="q-brand__name">quinde<span style="color:var(--teal)">.</span></span>
+      <span class="q-brand__rule"></span>
+      <span class="q-brand__role">Diego Andrés Quinde Probst</span>
+    </div>
+    <p class="note">Working paper v0.1 · July 2026 · Benchmark design &amp; preregistered protocol. 100% synthetic vignettes · not a medical device · open data &amp; code.</p>
+  </div>
+
+</article>
+
+</body>
+</html>

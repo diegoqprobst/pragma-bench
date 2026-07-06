@@ -1,0 +1,36 @@
+{
+  "title": "Palo Alto Bench: Can Frontier LLMs Detect Symmetrical Escalation and Double Binds, and Produce Valid Reframes? A Bilingual (Spanish/English) Benchmark — Working Paper v0.1 (Design & Preregistered Protocol)",
+  "upload_type": "publication",
+  "publication_type": "workingpaper",
+  "description": "<p>Pre-results working paper introducing Palo Alto Bench, a bilingual (Spanish/English) benchmark grounded in the interactional theory of the Palo Alto school (Bateson, Watzlawick). It evaluates three capabilities of frontier LLMs over short expert-authored dialogues: (1) detecting symmetrical escalation and double binds, (2) localizing their internal structure (primary injunction, contradictory secondary injunction, metacommunication block), and (3) producing valid reframes scored against the five validity criteria of Watzlawick, Weakland and Fisch. Items never name the constructs; adversarial distractors measure over-detection; all items are culturally-native ES/EN parallel pairs. This version fixes and makes citable the benchmark design, the frozen seed set (15 pairs, 30 stimuli), the frozen prompts, and the preregistered analysis plan (4 directional hypotheses). Results of the confirmatory run against frontier models will appear in the next version of this record.</p>",
+  "creators": [
+    {
+      "name": "Quinde Probst, Diego Andrés",
+      "orcid": "0009-0005-7107-8897"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "version": "0.1",
+  "language": "eng",
+  "keywords": [
+    "large language models",
+    "benchmark evaluation",
+    "pragmatics",
+    "systemic therapy",
+    "double bind",
+    "symmetrical escalation",
+    "reframing",
+    "Palo Alto school",
+    "cross-lingual evaluation",
+    "Spanish NLP",
+    "LLM-as-judge",
+    "preregistration"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/diegoqprobst/pragma-bench",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ]
+}
