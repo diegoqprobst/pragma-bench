@@ -5,7 +5,7 @@
 Diego Quinde
 diegoaquinde@gmail.com
 
-> **Estado del manuscrito:** borrador pre-resultados. Las secciones 1–6, 8.2, 9–11 están completas; los bloques marcados `[RESULTS]` se llenan tras la corrida confirmatoria preregistrada. Los `[VERIFY-CITE]` requieren verificación antes de enviar (política: ninguna cita entra sin verificar).
+> **Estado del manuscrito:** borrador pre-resultados. Las secciones 1–6, 8.2, 9–11 están completas; los bloques marcados `[RESULTS]` se llenan tras la corrida confirmatoria preregistrada. Citas del related work **verificadas 2026-07-07** contra fuente primaria (ver [docs/citas-verificadas.md](../docs/citas-verificadas.md)); queda un único `[VERIFY-CITE]` opcional en §1.
 
 ---
 
@@ -21,7 +21,7 @@ Large language models are increasingly used in emotionally loaded conversations 
 
 A person tells a chatbot: *"My mother asks me to hug her, then stiffens and says a real hug should come on its own — and when I point this out, she says a good son doesn't argue."* Whether the model recognizes what is happening here — not sadness, not conflict, but a specific interactional trap with a specific structure — determines whether its response helps, soothes generically, or reinforces the trap.
 
-Current evaluations of LLMs in psychologically sensitive settings measure symptom classification, risk detection, empathy ratings, or counseling-style quality [VERIFY-CITE: representative mental-health NLP benchmarks]. All of these treat the *individual* as the unit of analysis and the *content* of utterances as the signal. But a founding insight of the systemic tradition in psychotherapy is that much psychological suffering lives not in individuals but in **interaction patterns**: self-reinforcing loops with an internal structure that is invisible at the level of any single message (Watzlawick, Beavin & Jackson, 1967). A model that reads content but not pattern will misread precisely the conversations where stakes are highest.
+Current evaluations of LLMs in psychologically sensitive settings measure symptom and risk classification (the CLPsych shared-task series, 2014–present), empathy expression (Sharma et al., 2020), counseling-response quality (Liu et al., 2021), or fidelity of simulated patients for training (Wang et al., 2024). All of these treat the *individual* as the unit of analysis and the *content* of utterances as the signal. But a founding insight of the systemic tradition in psychotherapy is that much psychological suffering lives not in individuals but in **interaction patterns**: self-reinforcing loops with an internal structure that is invisible at the level of any single message (Watzlawick, Beavin & Jackson, 1967). A model that reads content but not pattern will misread precisely the conversations where stakes are highest.
 
 We ask a direct question: **can frontier LLMs see interaction patterns?** We operationalize it through three constructs from the Palo Alto school, chosen because they are (a) precisely defined in the source literature, (b) structurally diagnosable from short dialogue excerpts, and (c) consequential — each has a known clinical intervention whose misapplication causes harm:
 
@@ -31,7 +31,7 @@ We ask a direct question: **can frontier LLMs see interaction patterns?** We ope
 
 The first two test *recognition* at increasing depth (label → structure); the third tests *production* of an intervention, scored against explicit validity criteria rather than judge taste.
 
-**Why bilingual.** Clinical NLP evaluation is overwhelmingly monolingual English [VERIFY-CITE]. Yet the deployment reality of emotionally loaded LLM use is massively multilingual, and Spanish is among the largest deployment languages with the least evaluation coverage. Every Palo Alto Bench item is authored as a **parallel pair**: same phenomenon, same turn structure, culturally native wording in each language. This makes the cross-lingual gap a measured quantity rather than an anecdote.
+**Why bilingual.** Clinical NLP evaluation is overwhelmingly monolingual English — the anchor datasets above are all English-language [VERIFY-CITE: multilingual-gap survey, optional reinforcement]. Yet the deployment reality of emotionally loaded LLM use is massively multilingual, and Spanish is among the largest deployment languages with the least evaluation coverage. Every Palo Alto Bench item is authored as a **parallel pair**: same phenomenon, same turn structure, culturally native wording in each language. This makes the cross-lingual gap a measured quantity rather than an anecdote.
 
 **Why these failure modes matter.** Our design targets two specific risks. *Over-detection*: a model that finds pathology wherever it looks — measured with adversarial `none` items (a demanding but commentable request; a conflict that repairs; a one-off helpful asymmetry) and a neutral-vs-guided prompt manipulation. *Invalid reframes*: responses that sound therapeutic while being positivity, advice, or minimization — measured with a five-axis rubric derived directly from Watzlawick's validity criteria, with disqualification flags for each failure mode.
 
@@ -65,15 +65,13 @@ Reframing is "to change the conceptual and/or emotional setting or viewpoint in 
 
 ## 3. Related Work
 
-*(Sección a densificar con deep-research verificado antes del envío; el mapa argumental es el siguiente.)*
+**Mental-health and counseling NLP.** Existing work targets the individual and the utterance: risk and symptom classification over user text (the CLPsych workshop series and its shared tasks, ACL, 2014–present), empathy expression in support conversations (Sharma, Miner, Atkins & Althoff, 2020), strategy-annotated emotional-support dialogue (ESConv; Liu et al., 2021), and simulated patients for clinician training (PATIENT-Ψ; Wang et al., 2024). Palo Alto Bench differs on the unit of analysis — the interaction pattern, not the individual — and on scoring generation against construct-derived validity criteria rather than preference or strategy labels.
 
-**Mental-health and counseling NLP.** Existing benchmarks and datasets target symptom/risk classification, empathy, and counseling-response quality [VERIFY-CITE: 3–5 anchors]. Palo Alto Bench differs on the unit of analysis (the interaction pattern, not the individual) and on scoring production against construct-derived validity criteria rather than preference judgments.
+**Pragmatics evaluation for LLMs.** Existing pragmatics benchmarks test single-utterance inference: implicature resolution (Ruis et al., 2022) and a battery of seven pragmatic phenomena compared against human judgments (Hu et al., 2023). Our constructs are irreducibly *dyadic and multi-turn* — the signal is a property of the loop between speakers, not of any utterance, and the double bind specifically requires tracking contradiction across message levels over turns.
 
-**Pragmatics evaluation for LLMs.** Benchmarks for implicature, indirect speech, and theory-of-mind [VERIFY-CITE] test single-utterance or single-mind inference; our constructs are irreducibly *dyadic and multi-turn* — the signal is a property of the loop, not of any utterance.
+**Sycophancy and over-diagnosis.** Sharma et al. (2023) show state-of-the-art assistants consistently bend toward what prompts suggest. Our neutral-vs-guided manipulation measures a clinical variant of this failure: does naming pathologies make the model find them where there are none? (H3).
 
-**Sycophancy and over-diagnosis.** Work on sycophancy shows models bend toward what prompts suggest [VERIFY-CITE: Sharma et al. 2023-style anchor]. Our neutral-vs-guided manipulation measures a clinical variant: does naming pathologies make the model find them where there are none?
-
-**LLM-as-judge.** We follow the practice of calibrating an LLM judge against human expert ratings before scaling [VERIFY-CITE: Zheng et al. 2023 MT-Bench anchor], with an anti-self-preference constraint (the judge model never scores its own generator family's outputs without this being reported).
+**LLM-as-judge.** Zheng et al. (2023) establish both the practice of validating LLM judges against human preferences and the biases that make uncalibrated judging unsafe (position, verbosity, self-enhancement). We adopt calibration against a human expert with a preregistered κ threshold, plus an anti-self-preference constraint: the judge never scores outputs of its own generator family without this being reported.
 
 ## 4. The Benchmark
 
@@ -168,15 +166,18 @@ Items, gold annotations, frozen prompts, runner and scoring code, raw model outp
 
 ## References
 
-*(Verificadas — clásicos fuente:)*
+*(Todas verificadas contra fuente primaria — detalle y enlaces en [docs/citas-verificadas.md](../docs/citas-verificadas.md).)*
 
 - Bateson, G., Jackson, D. D., Haley, J., & Weakland, J. (1956). Toward a theory of schizophrenia. *Behavioral Science*, 1(4), 251–264.
+- Hu, J., Floyd, S., Jouravlev, O., Fedorenko, E., & Gibson, E. (2023). A fine-grained comparison of pragmatic language understanding in humans and language models. *Proceedings of ACL 2023*, 4194–4213. arXiv:2212.06801.
+- Liu, S., Zheng, C., Demasi, O., Sabour, S., Li, Y., Yu, Z., Jiang, Y., & Huang, M. (2021). Towards emotional support dialog systems. *Proceedings of ACL 2021*. arXiv:2106.01144.
+- Ruis, L., Khan, A., Biderman, S., Hooker, S., Rocktäschel, T., & Grefenstette, E. (2022). Large language models are not zero-shot communicators. arXiv:2210.14986.
+- Sharma, A., Miner, A. S., Atkins, D. C., & Althoff, T. (2020). A computational approach to understanding empathy expressed in text-based mental health support. *Proceedings of EMNLP 2020*, 5263–5276. arXiv:2009.08441.
+- Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S. R., et al. (2023). Towards understanding sycophancy in language models. *ICLR 2024*. arXiv:2310.13548.
+- Wang, R., Milani, S., Chiu, J. C., et al. (2024). PATIENT-Ψ: Using large language models to simulate patients for training mental health professionals. *Proceedings of EMNLP 2024*. arXiv:2405.19660.
 - Watzlawick, P., Beavin, J. H., & Jackson, D. D. (1967). *Pragmatics of Human Communication: A Study of Interactional Patterns, Pathologies, and Paradoxes*. New York: W. W. Norton.
 - Watzlawick, P., Weakland, J. H., & Fisch, R. (1974). *Change: Principles of Problem Formation and Problem Resolution*. New York: W. W. Norton.
+- Workshop on Computational Linguistics and Clinical Psychology (CLPsych). *Proceedings*, Association for Computational Linguistics, 2014–present. aclanthology.org/venues/clpsych.
+- Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. *Advances in Neural Information Processing Systems 36* (Datasets and Benchmarks). arXiv:2306.05685.
 
-*(Pendientes de verificación antes del envío — [VERIFY-CITE]:)*
-
-- Anclas de mental-health NLP benchmarks (§1, §3).
-- Anclas de pragmatics/ToM evaluation (§3).
-- Sharma et al. (2023), sycophancy (§3) — verificar referencia exacta.
-- Zheng et al. (2023), LLM-as-judge / MT-Bench (§3) — verificar referencia exacta.
+*(Único marcador restante: [VERIFY-CITE: multilingual-gap survey] en §1 — refuerzo opcional, no bloqueante.)*

@@ -28,7 +28,7 @@ Metadatos: copiar de [`../.zenodo.json`](../.zenodo.json) (título, ORCID, CC BY
 
 - **Completas:** Abstract (con placeholders), §1–6 (introducción, teoría, related-work-mapa, benchmark, setup, hipótesis), §8.2, §9–11 (limitaciones, ética, disponibilidad), referencias fuente verificadas.
 - **`[RESULTS]`:** se llenan tras la corrida confirmatoria preregistrada (tablas 1–3 ya estructuradas en §7; ramas de interpretación pre-escritas en §8.1).
-- **`[VERIFY-CITE]`:** ninguna cita entra sin verificar (misma política que citas-verificadas en yo-distribuido). Pendientes: anclas de mental-health NLP, pragmatics/ToM eval, sycophancy (Sharma et al.), LLM-as-judge (Zheng et al.). Un deep-research de una sesión las resuelve.
+- **`[VERIFY-CITE]`:** ninguna cita entra sin verificar. **Resuelto 2026-07-07** — 8 anclas verificadas contra fuente primaria (ver [../docs/citas-verificadas.md](../docs/citas-verificadas.md)); el related work de `paper.md` ya está redactado con citas reales. Queda 1 marcador opcional en §1 (survey de brecha multilingüe, refuerzo no bloqueante).
 - **`[DOI]` / `[N]`:** se fijan al registrar en OSF y al pinnear modelos.
 
 ## Pipeline a arXiv
