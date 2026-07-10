@@ -6,7 +6,8 @@ Ejecución y scoring del benchmark. Los prompts viven **congelados y versionados
 
 ```bash
 pip install -r requirements.txt   # SDKs solo necesarios para los proveedores que uses
-export ANTHROPIC_API_KEY=...      # y/o OPENAI_API_KEY, GOOGLE_API_KEY
+export OPENROUTER_API_KEY=...     # recomendado: una clave para todos (openrouter.ai)
+# alternativas directas: ANTHROPIC_API_KEY / OPENAI_API_KEY / GOOGLE_API_KEY
 ```
 
 ## Flujo

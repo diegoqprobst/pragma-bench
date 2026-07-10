@@ -16,6 +16,7 @@ Claves API: variables de entorno ANTHROPIC_API_KEY / OPENAI_API_KEY / GOOGLE_API
 import argparse
 import hashlib
 import json
+import os
 import pathlib
 import random
 import sys
@@ -106,6 +107,16 @@ def call_model(model_cfg, prompt, temperature, max_tokens=1024):
     if provider == "openai":
         import openai
         client = openai.OpenAI()
+        resp = client.chat.completions.create(
+            model=model, max_tokens=max_tokens, temperature=temperature,
+            messages=[{"role": "user", "content": prompt}])
+        return resp.choices[0].message.content
+    if provider == "openrouter":
+        # API compatible con OpenAI; una sola clave para todos los proveedores.
+        # Ids de modelo con prefijo: anthropic/..., openai/..., google/..., qwen/...
+        import openai
+        client = openai.OpenAI(base_url="https://openrouter.ai/api/v1",
+                               api_key=os.environ["OPENROUTER_API_KEY"])
         resp = client.chat.completions.create(
             model=model, max_tokens=max_tokens, temperature=temperature,
             messages=[{"role": "user", "content": prompt}])

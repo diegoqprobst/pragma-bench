@@ -1,11 +1,13 @@
 {
   "_comment": "Copia a config.json y ajusta. Los IDs de modelo se pinnean en la fecha de ejecución y quedan registrados en el run-manifest. El judge_model debe ser DISTINTO de todos los generadores (anti-autopreferencia).",
+  "_comment_openrouter": "Opción recomendada con presupuesto único: provider 'openrouter' (una clave para todos; export OPENROUTER_API_KEY=...). IDs con prefijo: anthropic/..., openai/..., google/..., qwen/... — verificar el id exacto en openrouter.ai/models al ejecutar.",
   "temperature": 0.0,
   "models": [
-    { "provider": "anthropic", "model": "claude-opus-4-8" },
-    { "provider": "anthropic", "model": "claude-sonnet-5" },
-    { "provider": "openai", "model": "<gpt-frontera-al-ejecutar>" },
-    { "provider": "google", "model": "<gemini-frontera-al-ejecutar>" }
+    { "provider": "openrouter", "model": "anthropic/<claude-frontera-al-ejecutar>" },
+    { "provider": "openrouter", "model": "openai/<gpt-frontera-al-ejecutar>" },
+    { "provider": "openrouter", "model": "google/<gemini-frontera-al-ejecutar>" },
+    { "provider": "openrouter", "model": "qwen/<open-weights-baseline-opcional>" }
   ],
-  "judge_model": { "provider": "anthropic", "model": "<juez-fijo-distinto-de-generadores>" }
+  "judge_model": { "provider": "openrouter", "model": "<juez-fijo-distinto-de-generadores>" },
+  "_alt_directo": "También soportado: provider 'anthropic' (ANTHROPIC_API_KEY), 'openai' (OPENAI_API_KEY), 'google' (GOOGLE_API_KEY) — p. ej. Gemini vía AI Studio tiene capa gratuita."
 }
