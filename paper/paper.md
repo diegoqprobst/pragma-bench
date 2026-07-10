@@ -11,7 +11,7 @@ diegoaquinde@gmail.com
 
 ## Abstract
 
-Large language models are increasingly used in emotionally loaded conversations — as companions, coaches, and informal counselors. These uses assume a capability that has never been directly measured: understanding the *relational pragmatics* of a conversation, i.e., what an exchange is doing between two people, over and above what either of them is saying. We introduce **Palo Alto Bench**, a bilingual (Spanish/English) benchmark grounded in the interactional theory of the Palo Alto school (Bateson, Watzlawick), which evaluates three capabilities over short expert-authored dialogues: (1) **detecting** symmetrical escalation and double binds, (2) **localizing** their internal structure (primary injunction, contradictory secondary injunction, metacommunication block), and (3) **producing valid reframes**, scored against the five validity criteria of Watzlawick, Weakland and Fisch. Items never name the constructs; adversarial distractors (commentable contradictions, repaired conflicts, flexible complementarity) measure over-detection. All items exist as culturally-native Spanish/English parallel pairs, isolating the cross-lingual gap. Against [N] frontier models under a preregistered protocol (OSF: [DOI]), we find [RESULTS: headline finding 1], [RESULTS: headline finding 2], and [RESULTS: headline finding 3]. Dataset, prompts, code, raw outputs, and both human and LLM judge scores are released openly.
+Large language models are increasingly used in emotionally loaded conversations — as companions, coaches, and informal counselors. These uses assume a capability that has never been directly measured: understanding the *relational pragmatics* of a conversation, i.e., what an exchange is doing between two people, over and above what either of them is saying. We introduce **Palo Alto Bench**, a bilingual (Spanish/English) benchmark grounded in the interactional theory of the Palo Alto school (Bateson, Watzlawick), which evaluates three capabilities over short expert-authored dialogues: (1) **detecting** symmetrical escalation and double binds, (2) **localizing** their internal structure (primary injunction, contradictory secondary injunction, metacommunication block), and (3) **producing valid reframes**, scored against the five validity criteria of Watzlawick, Weakland and Fisch. Items never name the constructs; adversarial distractors (commentable contradictions, repaired conflicts, flexible complementarity) measure over-detection. All items exist as culturally-native Spanish/English parallel pairs, isolating the cross-lingual gap. Against [N] frontier models under a preregistered protocol (OSF: 10.17605/OSF.IO/FUMSW), we find [RESULTS: headline finding 1], [RESULTS: headline finding 2], and [RESULTS: headline finding 3]. Dataset, prompts, code, raw outputs, and both human and LLM judge scores are released openly.
 
 **Keywords:** benchmark evaluation, pragmatics, systemic therapy, double bind, reframing, cross-lingual evaluation, LLM-as-judge
 
@@ -38,7 +38,7 @@ The first two test *recognition* at increasing depth (label → structure); the 
 **Contributions.**
 1. The first benchmark (to our knowledge) operationalizing systemic-interactional constructs — symmetrical escalation, double bind (with its component structure), complementary rigidity, and valid reframing — for LLM evaluation.
 2. A bilingual parallel-pair design with expert-authored items that never name their constructs, plus adversarial distractors calibrated to each construct's nearest confusable neighbor.
-3. A preregistered evaluation of [N] frontier models (OSF: [DOI]) with a human-expert-calibrated LLM judge for the generative task.
+3. A preregistered evaluation of [N] frontier models (OSF: 10.17605/OSF.IO/FUMSW) with a human-expert-calibrated LLM judge for the generative task.
 4. Full open release: items, gold annotations, frozen prompts, runner, raw model outputs, and judge scores.
 
 ## 2. Theoretical Background
@@ -109,11 +109,11 @@ Each generated reframe is scored 1–4 on the five axes by (a) the human expert 
 
 **Failure handling (preregistered).** Refusals count as incorrect/invalid and are reported separately; malformed JSON gets one format-reminder retry then counts as incorrect; API errors retry ×3 then the item is excluded and reported (>5% exclusions ⇒ model flagged as partial evaluation).
 
-**Statistics.** 95% CIs via nonparametric bootstrap (B = 10,000) resampling by `pair_id`; H2 via exact McNemar on ES/EN paired accuracy (Task A) and Wilcoxon signed-rank on item-level rubric means (Task C); H3 via McNemar on paired FP outcomes (guided vs. neutral) per `none` item; Holm correction across models within each hypothesis. Full plan: OSF preregistration [DOI].
+**Statistics.** 95% CIs via nonparametric bootstrap (B = 10,000) resampling by `pair_id`; H2 via exact McNemar on ES/EN paired accuracy (Task A) and Wilcoxon signed-rank on item-level rubric means (Task C); H3 via McNemar on paired FP outcomes (guided vs. neutral) per `none` item; Holm correction across models within each hypothesis. Full plan: OSF preregistration 10.17605/OSF.IO/FUMSW.
 
 ## 6. Hypotheses
 
-Preregistered, directional (see OSF [DOI] for operationalization):
+Preregistered, directional (see OSF 10.17605/OSF.IO/FUMSW for operationalization):
 
 - **H1.** Double-bind detection F1 < symmetrical-escalation detection F1 (multilevel reasoning is harder than curve-shape recognition).
 - **H2.** Spanish performance < English on at least one task, within parallel pairs.
@@ -162,7 +162,7 @@ This is an evaluation instrument, not a clinical tool. Nothing here validates LL
 
 ## 11. Data and Code Availability
 
-Items, gold annotations, frozen prompts, runner and scoring code, raw model outputs, judge scores (human and LLM), and the preregistration are available at github.com/diegoqprobst/pragma-bench (code MIT, data CC BY 4.0) and OSF [DOI].
+Items, gold annotations, frozen prompts, runner and scoring code, raw model outputs, judge scores (human and LLM), and the preregistration are available at github.com/diegoqprobst/pragma-bench (code MIT, data CC BY 4.0) and OSF 10.17605/OSF.IO/FUMSW.
 
 ## References
 

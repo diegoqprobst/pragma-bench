@@ -92,7 +92,9 @@ def build_prompt(task, item, prompts, candidate=None):
 
 # ---------- proveedores ----------
 
-def call_model(model_cfg, prompt, temperature, max_tokens=1024):
+def call_model(model_cfg, prompt, temperature, max_tokens=2500):
+    # 2500: margen para modelos razonadores (el razonamiento consume tokens de salida
+    # antes del contenido; con 1024 deepseek-v4-pro devolvía contenido vacío).
     provider = model_cfg["provider"]
     model = model_cfg["model"]
     if provider == "mock":

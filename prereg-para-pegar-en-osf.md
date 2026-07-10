@@ -1,12 +1,3 @@
-# Preregistro — Palo Alto Bench
-
-> **Documento listo para subir a OSF** (plantilla OSF Preregistration). Congela hipótesis, diseño, métricas y plan de análisis ANTES de ejecutar cualquier modelo evaluado. Una vez registrado (fecha + DOI), no se modifica; cualquier desviación se reporta como tal en el preprint.
->
-> Estado: **REGISTRADO en OSF el 2026-07-10.**
-> Registro OSF: **doi.org/10.17605/OSF.IO/FUMSW** · proyecto asociado: osf.io/rb9xq · licencia CC0 1.0.
-> Working paper v0.1 (diseño + protocolo) en Zenodo: **doi.org/10.5281/zenodo.21223038** (2026-07-06).
-> El registro es inmutable: cualquier desviación posterior se reporta como tal en el paper.
-
 ## 1. Título
 
 *Palo Alto Bench: Can Frontier LLMs Detect Symmetrical Escalation and Double Binds, and Produce Valid Reframes? A Bilingual (Spanish/English) Benchmark.*
