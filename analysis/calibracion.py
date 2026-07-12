@@ -115,7 +115,8 @@ def kappa(csv_path):
             row = dq.get(code)
             if not row or not row.get(ax, "").strip():
                 continue
-            jf = ROOT / f"results/raw/anthropic_claude-fable-5/judge/{meta['item_id']}_rep1_{meta['model']}.json"
+            # juez DEFINITIVO: sonnet-5 (elegido pre-calibración); fable-5 queda como suplementario
+            jf = ROOT / f"results/raw/anthropic_claude-sonnet-5/judge/{meta['item_id']}_rep1_{meta['model']}.json"
             if not jf.exists():
                 continue
             m = re.search(r"\{.*\}", json.loads(jf.read_text())["response"] or "", re.DOTALL)

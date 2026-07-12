@@ -124,41 +124,77 @@
         }
       }
     },
-    "c": {
-      "all": {
-        "n_judged": 24,
-        "pct_valid": 0.9583,
-        "mean_per_axis": {
-          "fit": 3.9583,
-          "frame_shift": 4.0,
-          "irreversibility": 3.5417,
-          "assimilability": 3.7917,
-          "behavioral_opening": 2.9583
+    "c_por_juez": {
+      "anthropic/claude-fable-5": {
+        "all": {
+          "n_judged": 24,
+          "pct_valid": 0.9583,
+          "mean_per_axis": {
+            "fit": 3.9583,
+            "frame_shift": 4.0,
+            "irreversibility": 3.5417,
+            "assimilability": 3.7917,
+            "behavioral_opening": 2.9583
+          }
+        },
+        "es": {
+          "n_judged": 12,
+          "pct_valid": 1.0,
+          "mean_per_axis": {
+            "fit": 4.0,
+            "frame_shift": 4.0,
+            "irreversibility": 3.5833,
+            "assimilability": 3.9167,
+            "behavioral_opening": 3.0
+          }
+        },
+        "en": {
+          "n_judged": 12,
+          "pct_valid": 0.9167,
+          "mean_per_axis": {
+            "fit": 3.9167,
+            "frame_shift": 4.0,
+            "irreversibility": 3.5,
+            "assimilability": 3.6667,
+            "behavioral_opening": 2.9167
+          }
         }
       },
-      "es": {
-        "n_judged": 12,
-        "pct_valid": 1.0,
-        "mean_per_axis": {
-          "fit": 4.0,
-          "frame_shift": 4.0,
-          "irreversibility": 3.5833,
-          "assimilability": 3.9167,
-          "behavioral_opening": 3.0
+      "anthropic/claude-sonnet-5": {
+        "all": {
+          "n_judged": 22,
+          "pct_valid": 0.8182,
+          "mean_per_axis": {
+            "fit": 3.9545,
+            "frame_shift": 3.8182,
+            "irreversibility": 3.1364,
+            "assimilability": 3.6364,
+            "behavioral_opening": 2.8182
+          }
+        },
+        "es": {
+          "n_judged": 11,
+          "pct_valid": 0.7273,
+          "mean_per_axis": {
+            "fit": 3.9091,
+            "frame_shift": 3.8182,
+            "irreversibility": 3.1818,
+            "assimilability": 3.6364,
+            "behavioral_opening": 2.7273
+          }
+        },
+        "en": {
+          "n_judged": 11,
+          "pct_valid": 0.9091,
+          "mean_per_axis": {
+            "fit": 4.0,
+            "frame_shift": 3.8182,
+            "irreversibility": 3.0909,
+            "assimilability": 3.6364,
+            "behavioral_opening": 2.9091
+          }
         }
-      },
-      "en": {
-        "n_judged": 12,
-        "pct_valid": 0.9167,
-        "mean_per_axis": {
-          "fit": 3.9167,
-          "frame_shift": 4.0,
-          "irreversibility": 3.5,
-          "assimilability": 3.6667,
-          "behavioral_opening": 2.9167
-        }
-      },
-      "judge_model": "anthropic/claude-fable-5"
+      }
     }
   },
   "deepseek_deepseek-v4-pro": {
@@ -285,41 +321,77 @@
         }
       }
     },
-    "c": {
-      "all": {
-        "n_judged": 24,
-        "pct_valid": 0.7917,
-        "mean_per_axis": {
-          "fit": 3.75,
-          "frame_shift": 3.8333,
-          "irreversibility": 3.0417,
-          "assimilability": 3.2083,
-          "behavioral_opening": 2.8333
+    "c_por_juez": {
+      "anthropic/claude-fable-5": {
+        "all": {
+          "n_judged": 24,
+          "pct_valid": 0.7917,
+          "mean_per_axis": {
+            "fit": 3.75,
+            "frame_shift": 3.8333,
+            "irreversibility": 3.0417,
+            "assimilability": 3.2083,
+            "behavioral_opening": 2.8333
+          }
+        },
+        "es": {
+          "n_judged": 12,
+          "pct_valid": 0.8333,
+          "mean_per_axis": {
+            "fit": 3.75,
+            "frame_shift": 3.8333,
+            "irreversibility": 3.0,
+            "assimilability": 3.1667,
+            "behavioral_opening": 2.9167
+          }
+        },
+        "en": {
+          "n_judged": 12,
+          "pct_valid": 0.75,
+          "mean_per_axis": {
+            "fit": 3.75,
+            "frame_shift": 3.8333,
+            "irreversibility": 3.0833,
+            "assimilability": 3.25,
+            "behavioral_opening": 2.75
+          }
         }
       },
-      "es": {
-        "n_judged": 12,
-        "pct_valid": 0.8333,
-        "mean_per_axis": {
-          "fit": 3.75,
-          "frame_shift": 3.8333,
-          "irreversibility": 3.0,
-          "assimilability": 3.1667,
-          "behavioral_opening": 2.9167
+      "anthropic/claude-sonnet-5": {
+        "all": {
+          "n_judged": 21,
+          "pct_valid": 0.5714,
+          "mean_per_axis": {
+            "fit": 3.5238,
+            "frame_shift": 3.6667,
+            "irreversibility": 2.619,
+            "assimilability": 3.0476,
+            "behavioral_opening": 2.5714
+          }
+        },
+        "es": {
+          "n_judged": 10,
+          "pct_valid": 0.5,
+          "mean_per_axis": {
+            "fit": 3.4,
+            "frame_shift": 3.3,
+            "irreversibility": 2.2,
+            "assimilability": 3.0,
+            "behavioral_opening": 2.5
+          }
+        },
+        "en": {
+          "n_judged": 11,
+          "pct_valid": 0.6364,
+          "mean_per_axis": {
+            "fit": 3.6364,
+            "frame_shift": 4.0,
+            "irreversibility": 3.0,
+            "assimilability": 3.0909,
+            "behavioral_opening": 2.6364
+          }
         }
-      },
-      "en": {
-        "n_judged": 12,
-        "pct_valid": 0.75,
-        "mean_per_axis": {
-          "fit": 3.75,
-          "frame_shift": 3.8333,
-          "irreversibility": 3.0833,
-          "assimilability": 3.25,
-          "behavioral_opening": 2.75
-        }
-      },
-      "judge_model": "anthropic/claude-fable-5"
+      }
     }
   },
   "google_gemini-3.1-pro-preview": {
@@ -444,41 +516,77 @@
         }
       }
     },
-    "c": {
-      "all": {
-        "n_judged": 24,
-        "pct_valid": 0.7917,
-        "mean_per_axis": {
-          "fit": 3.5,
-          "frame_shift": 3.5833,
-          "irreversibility": 3.2083,
-          "assimilability": 3.25,
-          "behavioral_opening": 2.7917
+    "c_por_juez": {
+      "anthropic/claude-fable-5": {
+        "all": {
+          "n_judged": 24,
+          "pct_valid": 0.7917,
+          "mean_per_axis": {
+            "fit": 3.5,
+            "frame_shift": 3.5833,
+            "irreversibility": 3.2083,
+            "assimilability": 3.25,
+            "behavioral_opening": 2.7917
+          }
+        },
+        "es": {
+          "n_judged": 12,
+          "pct_valid": 0.8333,
+          "mean_per_axis": {
+            "fit": 3.5,
+            "frame_shift": 3.5,
+            "irreversibility": 3.4167,
+            "assimilability": 3.0833,
+            "behavioral_opening": 2.8333
+          }
+        },
+        "en": {
+          "n_judged": 12,
+          "pct_valid": 0.75,
+          "mean_per_axis": {
+            "fit": 3.5,
+            "frame_shift": 3.6667,
+            "irreversibility": 3.0,
+            "assimilability": 3.4167,
+            "behavioral_opening": 2.75
+          }
         }
       },
-      "es": {
-        "n_judged": 12,
-        "pct_valid": 0.8333,
-        "mean_per_axis": {
-          "fit": 3.5,
-          "frame_shift": 3.5,
-          "irreversibility": 3.4167,
-          "assimilability": 3.0833,
-          "behavioral_opening": 2.8333
+      "anthropic/claude-sonnet-5": {
+        "all": {
+          "n_judged": 22,
+          "pct_valid": 0.1364,
+          "mean_per_axis": {
+            "fit": 3.2273,
+            "frame_shift": 2.9545,
+            "irreversibility": 2.3182,
+            "assimilability": 2.9091,
+            "behavioral_opening": 2.0455
+          }
+        },
+        "es": {
+          "n_judged": 10,
+          "pct_valid": 0.2,
+          "mean_per_axis": {
+            "fit": 3.2,
+            "frame_shift": 2.9,
+            "irreversibility": 2.2,
+            "assimilability": 2.7,
+            "behavioral_opening": 1.9
+          }
+        },
+        "en": {
+          "n_judged": 12,
+          "pct_valid": 0.0833,
+          "mean_per_axis": {
+            "fit": 3.25,
+            "frame_shift": 3.0,
+            "irreversibility": 2.4167,
+            "assimilability": 3.0833,
+            "behavioral_opening": 2.1667
+          }
         }
-      },
-      "en": {
-        "n_judged": 12,
-        "pct_valid": 0.75,
-        "mean_per_axis": {
-          "fit": 3.5,
-          "frame_shift": 3.6667,
-          "irreversibility": 3.0,
-          "assimilability": 3.4167,
-          "behavioral_opening": 2.75
-        }
-      },
-      "judge_model": "anthropic/claude-fable-5"
+      }
     }
   },
   "openai_gpt-5.5": {
@@ -603,41 +711,77 @@
         }
       }
     },
-    "c": {
-      "all": {
-        "n_judged": 24,
-        "pct_valid": 1.0,
-        "mean_per_axis": {
-          "fit": 3.9583,
-          "frame_shift": 4.0,
-          "irreversibility": 3.3333,
-          "assimilability": 3.7083,
-          "behavioral_opening": 3.0417
+    "c_por_juez": {
+      "anthropic/claude-fable-5": {
+        "all": {
+          "n_judged": 24,
+          "pct_valid": 1.0,
+          "mean_per_axis": {
+            "fit": 3.9583,
+            "frame_shift": 4.0,
+            "irreversibility": 3.3333,
+            "assimilability": 3.7083,
+            "behavioral_opening": 3.0417
+          }
+        },
+        "es": {
+          "n_judged": 12,
+          "pct_valid": 1.0,
+          "mean_per_axis": {
+            "fit": 3.9167,
+            "frame_shift": 4.0,
+            "irreversibility": 3.3333,
+            "assimilability": 3.6667,
+            "behavioral_opening": 3.0833
+          }
+        },
+        "en": {
+          "n_judged": 12,
+          "pct_valid": 1.0,
+          "mean_per_axis": {
+            "fit": 4.0,
+            "frame_shift": 4.0,
+            "irreversibility": 3.3333,
+            "assimilability": 3.75,
+            "behavioral_opening": 3.0
+          }
         }
       },
-      "es": {
-        "n_judged": 12,
-        "pct_valid": 1.0,
-        "mean_per_axis": {
-          "fit": 3.9167,
-          "frame_shift": 4.0,
-          "irreversibility": 3.3333,
-          "assimilability": 3.6667,
-          "behavioral_opening": 3.0833
+      "anthropic/claude-sonnet-5": {
+        "all": {
+          "n_judged": 24,
+          "pct_valid": 0.75,
+          "mean_per_axis": {
+            "fit": 3.9167,
+            "frame_shift": 3.75,
+            "irreversibility": 2.9583,
+            "assimilability": 3.4583,
+            "behavioral_opening": 2.7917
+          }
+        },
+        "es": {
+          "n_judged": 12,
+          "pct_valid": 0.75,
+          "mean_per_axis": {
+            "fit": 3.9167,
+            "frame_shift": 3.8333,
+            "irreversibility": 3.0,
+            "assimilability": 3.4167,
+            "behavioral_opening": 2.8333
+          }
+        },
+        "en": {
+          "n_judged": 12,
+          "pct_valid": 0.75,
+          "mean_per_axis": {
+            "fit": 3.9167,
+            "frame_shift": 3.6667,
+            "irreversibility": 2.9167,
+            "assimilability": 3.5,
+            "behavioral_opening": 2.75
+          }
         }
-      },
-      "en": {
-        "n_judged": 12,
-        "pct_valid": 1.0,
-        "mean_per_axis": {
-          "fit": 4.0,
-          "frame_shift": 4.0,
-          "irreversibility": 3.3333,
-          "assimilability": 3.75,
-          "behavioral_opening": 3.0
-        }
-      },
-      "judge_model": "anthropic/claude-fable-5"
+      }
     }
   }
 }

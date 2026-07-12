@@ -252,13 +252,13 @@ def main():
         judge_recs += read_raw(raw, slug, "judge")
         if r:
             report[slug] = r
-    # Tarea C: las puntuaciones del juez se atribuyen al GENERADOR del reencuadre
-    by_gen = defaultdict(list)
+    # Tarea C: puntuaciones atribuidas al GENERADOR, separadas POR JUEZ
+    # (puede haber más de un juez en results/raw: definitivo + suplementarios)
+    by_gen_judge = defaultdict(list)
     for rec in judge_recs:
-        by_gen[rec.get("generator") or "<sin_generador>"].append(rec)
-    for gen, recs in by_gen.items():
-        report.setdefault(gen, {})["c"] = score_c(items, recs)
-        report[gen]["c"]["judge_model"] = recs[0]["model"]
+        by_gen_judge[(rec.get("generator") or "<sin_generador>", rec["model"])].append(rec)
+    for (gen, judge), recs in by_gen_judge.items():
+        report.setdefault(gen, {}).setdefault("c_por_juez", {})[judge] = score_c(items, recs)
 
     pathlib.Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
