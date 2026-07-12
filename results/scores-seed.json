@@ -1,0 +1,643 @@
+{
+  "anthropic_claude-opus-4.8": {
+    "a_guided": {
+      "all": {
+        "n_items": 30,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 0.8889,
+          "complementary_rigidity": 0.6667,
+          "none": 1.0
+        },
+        "f1_macro": 0.8889,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 6,
+          "complementary_rigidity->double_bind": 2,
+          "double_bind->complementary_rigidity": 6,
+          "double_bind->double_bind": 8,
+          "none->none": 6,
+          "symmetrical_escalation->symmetrical_escalation": 10
+        }
+      },
+      "es": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 0.8889,
+          "complementary_rigidity": 0.6,
+          "none": 1.0
+        },
+        "f1_macro": 0.8722,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "complementary_rigidity->double_bind": 1,
+          "double_bind->complementary_rigidity": 4,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "en": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 0.8889,
+          "complementary_rigidity": 0.75,
+          "none": 1.0
+        },
+        "f1_macro": 0.9097,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "complementary_rigidity->double_bind": 1,
+          "double_bind->complementary_rigidity": 2,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "malformed_reps": 0
+    },
+    "a_neutral": {
+      "all": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 24,
+        "n_none": 6
+      },
+      "es": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      },
+      "en": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      }
+    },
+    "b": {
+      "all": {
+        "double_bind": {
+          "n": 8,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 10,
+          "mean_turn_jaccard": 0.9833
+        }
+      },
+      "es": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 0.9667
+        }
+      },
+      "en": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      }
+    },
+    "c": {
+      "all": {
+        "n_judged": 24,
+        "pct_valid": 0.9583,
+        "mean_per_axis": {
+          "fit": 3.9583,
+          "frame_shift": 4.0,
+          "irreversibility": 3.5417,
+          "assimilability": 3.7917,
+          "behavioral_opening": 2.9583
+        }
+      },
+      "es": {
+        "n_judged": 12,
+        "pct_valid": 1.0,
+        "mean_per_axis": {
+          "fit": 4.0,
+          "frame_shift": 4.0,
+          "irreversibility": 3.5833,
+          "assimilability": 3.9167,
+          "behavioral_opening": 3.0
+        }
+      },
+      "en": {
+        "n_judged": 12,
+        "pct_valid": 0.9167,
+        "mean_per_axis": {
+          "fit": 3.9167,
+          "frame_shift": 4.0,
+          "irreversibility": 3.5,
+          "assimilability": 3.6667,
+          "behavioral_opening": 2.9167
+        }
+      },
+      "judge_model": "anthropic/claude-fable-5"
+    }
+  },
+  "deepseek_deepseek-v4-pro": {
+    "a_guided": {
+      "all": {
+        "n_items": 30,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6,
+          "none": 0.9091
+        },
+        "f1_macro": 0.8773,
+        "fp_rate_on_none": 0.1667,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 6,
+          "double_bind->complementary_rigidity": 7,
+          "double_bind->double_bind": 8,
+          "none->complementary_rigidity": 1,
+          "none->none": 5,
+          "symmetrical_escalation->symmetrical_escalation": 10
+        }
+      },
+      "es": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6,
+          "none": 1.0
+        },
+        "f1_macro": 0.9,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "double_bind->complementary_rigidity": 4,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "en": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6,
+          "none": 0.8
+        },
+        "f1_macro": 0.85,
+        "fp_rate_on_none": 0.3333,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "double_bind->complementary_rigidity": 3,
+          "double_bind->double_bind": 4,
+          "none->complementary_rigidity": 1,
+          "none->none": 2,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "malformed_reps": 0
+    },
+    "a_neutral": {
+      "all": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 24,
+        "n_none": 6
+      },
+      "es": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      },
+      "en": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      }
+    },
+    "b": {
+      "all": {
+        "double_bind": {
+          "n": 8,
+          "mean_normalized": 0.7083,
+          "by_subtype": {
+            "logical_type": 0.75,
+            "pragmatic_paradox": 0.6667
+          }
+        },
+        "escalation": {
+          "n": 10,
+          "mean_turn_jaccard": 1.0
+        }
+      },
+      "es": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 0.9167,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 0.8334
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      },
+      "en": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 0.5,
+          "by_subtype": {
+            "logical_type": 0.5,
+            "pragmatic_paradox": 0.5
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      }
+    },
+    "c": {
+      "all": {
+        "n_judged": 24,
+        "pct_valid": 0.7917,
+        "mean_per_axis": {
+          "fit": 3.75,
+          "frame_shift": 3.8333,
+          "irreversibility": 3.0417,
+          "assimilability": 3.2083,
+          "behavioral_opening": 2.8333
+        }
+      },
+      "es": {
+        "n_judged": 12,
+        "pct_valid": 0.8333,
+        "mean_per_axis": {
+          "fit": 3.75,
+          "frame_shift": 3.8333,
+          "irreversibility": 3.0,
+          "assimilability": 3.1667,
+          "behavioral_opening": 2.9167
+        }
+      },
+      "en": {
+        "n_judged": 12,
+        "pct_valid": 0.75,
+        "mean_per_axis": {
+          "fit": 3.75,
+          "frame_shift": 3.8333,
+          "irreversibility": 3.0833,
+          "assimilability": 3.25,
+          "behavioral_opening": 2.75
+        }
+      },
+      "judge_model": "anthropic/claude-fable-5"
+    }
+  },
+  "google_gemini-3.1-pro-preview": {
+    "a_guided": {
+      "all": {
+        "n_items": 30,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.75,
+          "none": 1.0
+        },
+        "f1_macro": 0.9375,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 6,
+          "double_bind->complementary_rigidity": 4,
+          "double_bind->double_bind": 8,
+          "none->none": 6,
+          "symmetrical_escalation->symmetrical_escalation": 10
+        }
+      },
+      "es": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.8571,
+          "none": 1.0
+        },
+        "f1_macro": 0.9643,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "double_bind->complementary_rigidity": 1,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "en": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6667,
+          "none": 1.0
+        },
+        "f1_macro": 0.9167,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "double_bind->complementary_rigidity": 3,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "malformed_reps": 1
+    },
+    "a_neutral": {
+      "all": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 24,
+        "n_none": 6
+      },
+      "es": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      },
+      "en": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      }
+    },
+    "b": {
+      "all": {
+        "double_bind": {
+          "n": 8,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 10,
+          "mean_turn_jaccard": 1.0
+        }
+      },
+      "es": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      },
+      "en": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      }
+    },
+    "c": {
+      "all": {
+        "n_judged": 24,
+        "pct_valid": 0.7917,
+        "mean_per_axis": {
+          "fit": 3.5,
+          "frame_shift": 3.5833,
+          "irreversibility": 3.2083,
+          "assimilability": 3.25,
+          "behavioral_opening": 2.7917
+        }
+      },
+      "es": {
+        "n_judged": 12,
+        "pct_valid": 0.8333,
+        "mean_per_axis": {
+          "fit": 3.5,
+          "frame_shift": 3.5,
+          "irreversibility": 3.4167,
+          "assimilability": 3.0833,
+          "behavioral_opening": 2.8333
+        }
+      },
+      "en": {
+        "n_judged": 12,
+        "pct_valid": 0.75,
+        "mean_per_axis": {
+          "fit": 3.5,
+          "frame_shift": 3.6667,
+          "irreversibility": 3.0,
+          "assimilability": 3.4167,
+          "behavioral_opening": 2.75
+        }
+      },
+      "judge_model": "anthropic/claude-fable-5"
+    }
+  },
+  "openai_gpt-5.5": {
+    "a_guided": {
+      "all": {
+        "n_items": 30,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6316,
+          "none": 1.0
+        },
+        "f1_macro": 0.9079,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 6,
+          "double_bind->complementary_rigidity": 7,
+          "double_bind->double_bind": 8,
+          "none->none": 6,
+          "symmetrical_escalation->symmetrical_escalation": 10
+        }
+      },
+      "es": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6,
+          "none": 1.0
+        },
+        "f1_macro": 0.9,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "double_bind->complementary_rigidity": 4,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "en": {
+        "n_items": 15,
+        "f1_per_class": {
+          "symmetrical_escalation": 1.0,
+          "double_bind": 1.0,
+          "complementary_rigidity": 0.6667,
+          "none": 1.0
+        },
+        "f1_macro": 0.9167,
+        "fp_rate_on_none": 0.0,
+        "confusion_gold_pred": {
+          "complementary_rigidity->complementary_rigidity": 3,
+          "double_bind->complementary_rigidity": 3,
+          "double_bind->double_bind": 4,
+          "none->none": 3,
+          "symmetrical_escalation->symmetrical_escalation": 5
+        }
+      },
+      "malformed_reps": 0
+    },
+    "a_neutral": {
+      "all": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 24,
+        "n_none": 6
+      },
+      "es": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      },
+      "en": {
+        "sensitivity_pathological": 1.0,
+        "fp_rate_on_none": 0.0,
+        "n_pathological": 12,
+        "n_none": 3
+      }
+    },
+    "b": {
+      "all": {
+        "double_bind": {
+          "n": 8,
+          "mean_normalized": 0.9583,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 0.9167
+          }
+        },
+        "escalation": {
+          "n": 10,
+          "mean_turn_jaccard": 1.0
+        }
+      },
+      "es": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 0.9167,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 0.8334
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      },
+      "en": {
+        "double_bind": {
+          "n": 4,
+          "mean_normalized": 1.0,
+          "by_subtype": {
+            "logical_type": 1.0,
+            "pragmatic_paradox": 1.0
+          }
+        },
+        "escalation": {
+          "n": 5,
+          "mean_turn_jaccard": 1.0
+        }
+      }
+    },
+    "c": {
+      "all": {
+        "n_judged": 24,
+        "pct_valid": 1.0,
+        "mean_per_axis": {
+          "fit": 3.9583,
+          "frame_shift": 4.0,
+          "irreversibility": 3.3333,
+          "assimilability": 3.7083,
+          "behavioral_opening": 3.0417
+        }
+      },
+      "es": {
+        "n_judged": 12,
+        "pct_valid": 1.0,
+        "mean_per_axis": {
+          "fit": 3.9167,
+          "frame_shift": 4.0,
+          "irreversibility": 3.3333,
+          "assimilability": 3.6667,
+          "behavioral_opening": 3.0833
+        }
+      },
+      "en": {
+        "n_judged": 12,
+        "pct_valid": 1.0,
+        "mean_per_axis": {
+          "fit": 4.0,
+          "frame_shift": 4.0,
+          "irreversibility": 3.3333,
+          "assimilability": 3.75,
+          "behavioral_opening": 3.0
+        }
+      },
+      "judge_model": "anthropic/claude-fable-5"
+    }
+  }
+}
