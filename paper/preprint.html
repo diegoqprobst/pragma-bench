@@ -170,8 +170,8 @@
       <span class="q-brand__role">research preprint</span>
     </div>
     <div class="mast__meta">
-      Working paper · v0.1 · July 2026<br>
-      Design &amp; preregistered protocol · pre-results<br>
+      Working paper · v0.2 · July 2026<br>
+      Design · preregistered protocol · pilot results<br>
       DOI <span style="color:var(--teal)">10.5281/zenodo.21223038</span>
     </div>
   </header>
@@ -211,7 +211,7 @@
       <dt>Design</dt>
       <dd>Expert-authored dialogue vignettes that never name the constructs; culturally-native ES/EN parallel pairs isolating the cross-lingual gap; adversarial distractors (commentable contradictions, repaired conflicts, flexible complementarity) measuring over-detection; a neutral-vs-guided prompt manipulation quantifying prompt-induced pathologizing; and a generation task judged by a human expert and an LLM judge calibrated against them (weighted κ criterion, anti-self-preference constraint). Four directional hypotheses, all metrics, and a frozen reframe-validity threshold are preregistered before any evaluated model is run.</dd>
       <dt>Status of this version</dt>
-      <dd>v0.1 is a <strong>pre-results working paper</strong>: it fixes the benchmark design, the frozen seed set (15 pairs, 30 stimuli), the frozen prompts, and the preregistered analysis plan, and makes them citable. Results of the confirmatory run against frontier models will appear in the next version of this record; dataset, prompts, code, raw outputs and judge scores are released openly.</dd>
+      <dd>v0.2 adds <strong>pilot results on the calibration (seed) set</strong> — four frontier models × four tasks, two LLM judges — plus the full evaluation set (120 concepts, 240 stimuli) in expert-review draft. Pilot highlights: near-ceiling detection with <em>complementary rigidity</em> as the weak class; the weakest reframing axis across all four models is <em>behavioral opening</em>; and swapping the LLM judge moved one model's valid-reframe rate from 79% to 14% — an empirical case for human-expert calibration. Confirmatory results (preregistered H1–H4) will appear in the next version.</dd>
     </dl>
   </div>
 
@@ -395,38 +395,67 @@
     <p class="body body--soft">Exploratory: logical-type vs. pragmatic-paradox gap; component hallucination in Task B; register effects; escalation↔rigidity confusion structure. Full operationalization in the OSF registration accompanying this record.</p>
   </section>
 
-  <!-- ═══════════ 5. WHAT THIS VERSION IS ═══════════ -->
+  <!-- ═══════════ 5. PILOT RESULTS ═══════════ -->
   <section class="col">
     <span class="sec-no">05</span>
+    <h2 class="sec">Pilot results — calibration set</h2>
+    <p class="body">We ran the complete protocol on the frozen seed set (30 stimuli) against four models pinned on 2026-07-10 via OpenRouter — <code>anthropic/claude-opus-4.8</code>, <code>openai/gpt-5.5</code>, <code>google/gemini-3.1-pro-preview</code>, and <code>deepseek/deepseek-v4-pro</code> as open-weights baseline — with zero API errors across ~1,150 calls. <strong>These are pilot numbers on the calibration set</strong>: the seed set is excluded from confirmatory analysis by design, its items were authored as construct anchors (likely easier than the evaluation set, which contains structural twins and hardened distractors), and the LLM judges are not yet calibrated against the human expert. Nothing here tests the preregistered hypotheses.</p>
+    <h3 class="sub">Detection saturates; complementary rigidity is the crack</h3>
+    <p class="body">In the <em>neutral</em> condition all four models discriminated perfectly (24/24 pathological items flagged; 0/6 false positives on <code>none</code>): frontier models do not spontaneously pathologize these clear-cut healthy interactions. In the <em>guided</em> condition:</p>
+    <table class="ttable">
+      <tr><th>Model</th><th>Macro-F1</th><th>Escalation</th><th>Double bind</th><th>Compl. rigidity</th><th>FP on none</th></tr>
+      <tr><td>Gemini 3.1 Pro</td><td>0.94</td><td>1.00</td><td>1.00</td><td>0.75</td><td>0%</td></tr>
+      <tr><td>GPT-5.5</td><td>0.91</td><td>1.00</td><td>1.00</td><td>0.63</td><td>0%</td></tr>
+      <tr><td>Claude Opus 4.8</td><td>0.89</td><td>1.00</td><td>0.89</td><td>0.67</td><td>0%</td></tr>
+      <tr><td>DeepSeek v4 Pro</td><td>0.88</td><td>1.00</td><td>1.00</td><td>0.60</td><td>17%</td></tr>
+    </table>
+    <p class="body">The dominant confusion (24 of 27 cross-label events) is <strong>adding</strong> <code>complementary_rigidity</code> to gold double-bind items. Theoretically this is not absurd — the sender and receiver of a bind often do sit in a complementary relation — so whether the co-activation counts as error or as defensible multi-label reading is an adjudication we flag for the annotation guide (and report either way).</p>
+    <h3 class="sub">Localization: near-ceiling at the frontier, and the difficulty signal appears where capability runs out</h3>
+    <p class="body">Component localization (Task B) was near-perfect for the three frontier models (normalized double-bind component scores 0.96–1.00; escalation turn-Jaccard 0.98–1.00). The open-weights baseline dropped to 0.71 — and degraded more on <code>pragmatic_paradox</code> binds (0.67) than on <code>logical_type</code> ones (0.75), the direction our difficulty hypothesis predicts, visible only in the weakest model.</p>
+    <h3 class="sub">Reframing: the judge matters as much as the generator</h3>
+    <p class="body">All 96 generated reframes were scored by two LLM judges with the identical frozen rubric prompt — <code>claude-sonnet-5</code> (designated definitive judge, pre-calibration) and <code>claude-fable-5</code> (supplementary):</p>
+    <table class="ttable">
+      <tr><th>Generator</th><th>% valid · judge Fable-5</th><th>% valid · judge Sonnet-5</th></tr>
+      <tr><td>Claude Opus 4.8</td><td>96%</td><td>82%</td></tr>
+      <tr><td>GPT-5.5</td><td>100%</td><td>75%</td></tr>
+      <tr><td>Gemini 3.1 Pro</td><td>79%</td><td>14%</td></tr>
+      <tr><td>DeepSeek v4 Pro</td><td>79%</td><td>57%</td></tr>
+    </table>
+    <p class="body">Rankings roughly survive, but the bar does not: the stricter judge moved one model's validity rate from 79% to 14%. This is the empirical case for the protocol's human-calibration step — the expert's blind scores (in progress) arbitrate which judge tracks clinical judgment. Consistent across <em>both</em> judges and all four generators, the weakest rubric axis was <strong>behavioral opening</strong> (2.0–3.0 vs. 3.2–4.0 elsewhere): models reframe meaning fluently but struggle to open new courses of action — precisely the axis that separates a rhetorical reframe from a clinically useful one.</p>
+  </section>
+
+  <!-- ═══════════ 6. WHAT THIS VERSION IS ═══════════ -->
+  <section class="col">
+    <span class="sec-no">06</span>
     <h2 class="sec">What this version is — and is not</h2>
-    <p class="body">This working paper makes the benchmark's design citable and timestamped <em>before</em> results exist: constructs and annotation guide, frozen seed set, frozen prompts, frozen validity threshold, and the preregistered analysis plan. The confirmatory run — evaluation set, frontier-model results across the four hypotheses, judge-calibration outcomes — will appear in the next version of this record and in the accompanying arXiv preprint, together with a fully cited treatment of related work in mental-health NLP, pragmatics evaluation, sycophancy, and LLM-as-judge methodology.</p>
+    <p class="body">This working paper makes the benchmark's design citable and timestamped, and now adds pilot evidence from the calibration set: constructs and annotation guide, frozen seed set, frozen prompts, frozen validity threshold, and the preregistered analysis plan. The confirmatory run — evaluation set, frontier-model results across the four hypotheses, judge-calibration outcomes — will appear in the next version of this record and in the accompanying arXiv preprint, together with a fully cited treatment of related work in mental-health NLP, pragmatics evaluation, sycophancy, and LLM-as-judge methodology.</p>
     <p class="body">Palo Alto Bench measures pattern recognition and single-shot intervention quality over synthetic vignettes. It does not measure therapeutic outcome, multi-session skill, or deployment safety; a high score licenses none of those claims. The constructs carry historical caveats — the double-bind theory of schizophrenia is not an etiological claim we endorse; we use the communication-structural definitions, which stand independently.</p>
   </section>
 
   <!-- ═══════════ 6. LIMITATIONS ═══════════ -->
   <section class="col">
-    <span class="sec-no">06</span>
+    <span class="sec-no">07</span>
     <h2 class="sec">Limitations</h2>
     <p class="body">(i) Synthetic expert-authored items: strong confound control, reduced ecological realism; a subsample inspired by anonymized real transcripts is future work. (ii) <strong>Single expert annotator</strong> (the author) for gold labels and human judging: no inter-annotator κ is reportable; the annotation guide is public precisely so the labels can be replicated, and a second clinical annotator is the highest-value extension. (iii) LLM-judge bias: mitigated by human calibration, anti-self-preference and anti-template instructions, not eliminated. (iv) Results, when reported, will be version-pinned snapshots.</p>
   </section>
 
   <!-- ═══════════ 7. ETHICS ═══════════ -->
   <section class="col">
-    <span class="sec-no">07</span>
+    <span class="sec-no">08</span>
     <h2 class="sec">Ethics statement</h2>
     <p class="body">This is an evaluation instrument, not a clinical tool; nothing here validates LLMs as therapists — if anything, the benchmark exists to give precise content to claims of <em>incapacity</em>. Vignettes are fictional; no patient data is used. Model-generated reframes will be published with model attribution so failure modes are inspectable. Dual-use note: double-bind structure has been public in the clinical literature for seventy years; the benchmark adds detection capability, not technique.</p>
   </section>
 
   <!-- ═══════════ 8. AVAILABILITY ═══════════ -->
   <section class="col">
-    <span class="sec-no">08</span>
+    <span class="sec-no">09</span>
     <h2 class="sec">Data and code availability</h2>
     <p class="body">Items, gold annotations, frozen prompts, runner and scoring code, and the preregistration text are available at <span style="color:var(--teal);font-weight:500">github.com/diegoqprobst/pragma-bench</span> (code MIT, data CC BY 4.0). Raw model outputs and judge scores will be added with the confirmatory run. Preregistration (OSF): <span style="color:var(--teal);font-weight:500">doi.org/10.17605/OSF.IO/FUMSW</span>. This record: <span style="color:var(--teal);font-weight:500">doi.org/10.5281/zenodo.21223038</span> (Zenodo; the DOI versions with each release).</p>
   </section>
 
   <!-- ═══════════ REFERENCES ═══════════ -->
   <section class="col">
-    <span class="sec-no">09</span>
+    <span class="sec-no">10</span>
     <h2 class="sec">References</h2>
     <div class="refs">
       <p>Bateson, G., Jackson, D. D., Haley, J. &amp; Weakland, J. (1956). Toward a theory of schizophrenia. <b>Behavioral Science,</b> 1(4), 251–264.</p>
@@ -443,7 +472,7 @@
       <span class="q-brand__rule"></span>
       <span class="q-brand__role">Diego Andrés Quinde Probst</span>
     </div>
-    <p class="note">Working paper v0.1 · July 2026 · doi.org/10.5281/zenodo.21223038 · Benchmark design &amp; preregistered protocol. 100% synthetic vignettes · not a medical device · open data &amp; code.</p>
+    <p class="note">Working paper v0.2 · July 2026 · doi.org/10.5281/zenodo.21223038 · Benchmark design &amp; preregistered protocol. 100% synthetic vignettes · not a medical device · open data &amp; code.</p>
   </div>
 
 </article>
